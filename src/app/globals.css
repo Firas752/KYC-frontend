@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&family=Poppins:wght@300&family=Roboto:wght@100;300;400;500&display=swap");
+
+:root {
+	--primary: #5046e3;
+	--primary-gray: #d0d5dd;
+	--primary-success: #01c22c;
+	--primary-error: #f04848;
+	--primary-dark-gray: #555760;
+
+	/* font variables */
+	--font-roboto: Roboto;
+	--font-inter: Inter;
+	--font-poppins: Poppins;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: var(--font-inter);
+}
+
+.react-international-phone-country-selector-button {
+	padding: 24.5px !important;
+}
