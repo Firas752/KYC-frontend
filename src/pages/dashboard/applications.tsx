@@ -7,10 +7,10 @@ import RejectedApplications from "./application/rejected";
 import AllApplications from "./application/all";
 
 const Applications = () => {
-	const lists = ["All", "Pending", "Accepted", "Rejected"];
+	const lists = ["Pending", "Accepted", "Rejected"];
 
 	const applicationListItems: JSX.Element[] = [
-		<AllApplications />,
+		// <AllApplications />,
 		<PendingApplications />,
 		<AcceptedApplications />,
 		<RejectedApplications />,
