@@ -22,14 +22,19 @@ const SimpleLayout = ({
 			<Container>
 				{profile && (
 					<Flex justifyContent={"space-between"} alignItems={"center"} my="1em">
-						<Text
-							fontWeight={"bold"}
-							cursor={"pointer"}
-							color="#1967FD"
-							fontSize={"16px"}
+						<Link
+							href="https://api.whatsapp.com/send?phone=966500041554&text=Thanks%20for%20contacting%20our%20support"
+							target="_blank"
 						>
-							Support
-						</Text>
+							<Text
+								fontWeight={"bold"}
+								cursor={"pointer"}
+								color="#1967FD"
+								fontSize={"16px"}
+							>
+								Support
+							</Text>
+						</Link>
 						<Avatar name="Obiabo Immanuel" />
 					</Flex>
 				)}
