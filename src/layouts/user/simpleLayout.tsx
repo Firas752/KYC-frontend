@@ -35,7 +35,7 @@ const SimpleLayout = ({
 								Support
 							</Text>
 						</Link>
-						<Avatar name="Obiabo Immanuel" />
+						<Avatar src="/images/logomark.svg" />
 					</Flex>
 				)}
 
