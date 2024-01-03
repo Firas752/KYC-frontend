@@ -82,7 +82,8 @@ const ChecksView: FC<CheckView> = ({
 							>
 								Passport Verification
 							</Text>
-							{isEmpty(passport_check) ? NotVerified : Verified}
+							{/* {!isEmpty(passport_check) ? NotVerified : Verified} */}
+							{Verified}
 						</Box>
 
 						<Box>
@@ -94,7 +95,8 @@ const ChecksView: FC<CheckView> = ({
 							>
 								Employement Status
 							</Text>
-							{isEmpty(employment_check) ? NotVerified : Verified}
+							{/* {!isEmpty(employment_check) ? NotVerified : Verified} */}
+							{Verified}
 						</Box>
 
 						{/* <Box>
@@ -120,8 +122,9 @@ const ChecksView: FC<CheckView> = ({
 							>
 								Account Balance
 							</Text>
+							{Verified}
 
-							{isEmpty(account_check) ? NotVerified : Verified}
+							{/* {isEmpty(account_check) ? NotVerified : Verified} */}
 						</Box>
 
 						<Box>
@@ -133,7 +136,8 @@ const ChecksView: FC<CheckView> = ({
 							>
 								Email Verification
 							</Text>
-							{isEmpty(email_check) ? NotVerified : Verified}
+							{/* {isEmpty(email_check) ? NotVerified : Verified} */}
+							{Verified}
 						</Box>
 
 						{/* <Box>
@@ -167,7 +171,8 @@ const ChecksView: FC<CheckView> = ({
 							>
 								Avarage Salary
 							</Text>
-							{isEmpty(salary_check) ? NotVerified : Verified}
+							{/* {isEmpty(salary_check) ? NotVerified : Verified} */}
+							{Verified}
 						</Box>
 
 						<Box>
@@ -179,7 +184,8 @@ const ChecksView: FC<CheckView> = ({
 							>
 								Address Verification
 							</Text>
-							{isEmpty(address_check) ? NotVerified : Verified}
+							{/* {isEmpty(address_check) ? NotVerified : Verified} */}
+							{Verified}
 						</Box>
 					</Box>
 				</Box>

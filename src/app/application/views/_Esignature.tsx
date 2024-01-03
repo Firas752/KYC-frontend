@@ -29,7 +29,7 @@ const statmentIcon = (
 const UtilityView = () => {
 	return (
 		<Box>
-			<Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>
+			{/* <Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>
 				<Box
 					w={"100%"}
 					display={"flex"}
@@ -45,7 +45,7 @@ const UtilityView = () => {
 								fontWeight={600}
 								lineHeight={"28px"}
 							>
-								Status
+								Passport Issued Date
 							</Text>
 							<Box
 								display={"flex"}
@@ -54,7 +54,7 @@ const UtilityView = () => {
 								lineHeight={"28px"}
 								my=".3em"
 							>
-								<Text>Signed</Text>
+								<Text>6 months ago</Text>
 							</Box>
 						</Box>
 					</Box>
@@ -67,7 +67,7 @@ const UtilityView = () => {
 								fontWeight={600}
 								lineHeight={"28px"}
 							>
-								E-Signature
+								Proof of Travel
 							</Text>
 							<Box
 								display={"flex"}
@@ -82,15 +82,34 @@ const UtilityView = () => {
 						</Box>
 					</Box>
 
-					<Box w="190px" display={"flex"} flexDir={"column"} gap="2em">
-						<Box display={["none"]}>
+					
+
+					
+
+					
+
+					
+				</Box>
+			</Flex> */}
+			<Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>
+				<Box
+					w={"100%"}
+					display={"flex"}
+					gap="1em"
+					justifyContent={"space-between"}
+					flexWrap="wrap"
+				>
+					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
+						
+
+						<Box>
 							<Text
 								color="#666D76"
 								fontSize={["18px", "15px"]}
 								fontWeight={600}
 								lineHeight={"28px"}
 							>
-								E-Signature
+								Passport Issue Date
 							</Text>
 							<Box
 								display={"flex"}
@@ -99,8 +118,93 @@ const UtilityView = () => {
 								lineHeight={"28px"}
 								my=".3em"
 							>
-								{statmentIcon}
-								<Text>Sample.pdf</Text>
+								<Text></Text>
+							</Box>
+						</Box>
+
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Device
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>phone 11</Text>
+							</Box>
+						</Box>
+					</Box>
+
+					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Did they traveld before ?
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>YES</Text>
+							</Box>
+						</Box>
+
+						{/* <Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Currency
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text></Text>
+							</Box>
+						</Box> */}
+					</Box>
+
+					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Proof of Travel
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>
+									{statmentIcon}
+								</Text>
 							</Box>
 						</Box>
 					</Box>

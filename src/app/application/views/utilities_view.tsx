@@ -11,7 +11,7 @@ interface IUtility {
 const UtilityView: FC<IUtility> = ({ address, city, utility_bill_url }) => {
 	return (
 		<Box>
-			<Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>
+			<Flex gap={["1em", "3em"]} flexDir={["column-reverse", "column" ,"row"]}>
 				<Box
 					w={"100%"}
 					display={"flex"}
@@ -104,6 +104,9 @@ const UtilityView: FC<IUtility> = ({ address, city, utility_bill_url }) => {
 							</Box>
 						</Box>
 					</Box>
+				</Box>
+				<Box w={['100%', '100%' ,'40%']} h='200px' bg='gray'>
+					map
 				</Box>
 			</Flex>
 		</Box>

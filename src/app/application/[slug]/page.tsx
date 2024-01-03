@@ -182,9 +182,9 @@ const Page = () => {
 						utility_bill_url=""
 					/>
 				</ContentViewContainer>
-				{/* <ContentViewContainer title="E-Signature">
+				<ContentViewContainer title="User Behaviour">
 					<Esignature />
-				</ContentViewContainer> */}
+				</ContentViewContainer>
 			</Box>
 		</DashboardLayout>
 	);
