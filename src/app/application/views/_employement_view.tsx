@@ -2,12 +2,17 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React, { FC } from "react";
 import Link from "next/link";
+import { number } from "yup";
 
 interface IEmployment {
 	status?: string;
 	salary?: number;
 	company_name?: string;
 	letter_link?: string | any;
+	//salary?: number, 
+	lastSalary?: number, 
+	card?: string
+
 }
 
 const statmentIcon = (
@@ -39,6 +44,7 @@ const EmploymentView: FC<IEmployment> = ({
 	letter_link,
 	salary,
 	company_name,
+	lastSalary
 }) => {
 	return (
 		<Box>
@@ -71,7 +77,7 @@ const EmploymentView: FC<IEmployment> = ({
 							</Box>
 						</Box>
 
-						<Box>
+						{/* <Box>
 							<Text
 								color="#666D76"
 								fontSize={["18px", "15px"]}
@@ -92,7 +98,7 @@ const EmploymentView: FC<IEmployment> = ({
 								</Link>
 								<Text>Verified</Text>
 							</Box>
-						</Box>
+						</Box> */}
 					</Box>
 
 					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">

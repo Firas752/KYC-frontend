@@ -52,6 +52,7 @@ const ProfileView: FC<ProfileInterface> = ({
 
 	const birth_year = date_of_birth?.split("-")[0];
 	const applicant_age = currentYear - birth_year;
+	console.log(issued_date , "hello")
 
 	const errorImage = (
 		<Flex h="100%" alignItems={"center"} justifyContent={"center"}>

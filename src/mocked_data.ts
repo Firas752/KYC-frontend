@@ -23,25 +23,26 @@ export const apiMockedData = [
             "phone_number": "+6281234567890",
             "signature_link": "",
             "image_logo": "",
-            "id_number": "A34323"
+            "id_number": "A34323",
+            "score": "0.8"
         },
         "passport_info": {
-            "kyc_submission_id": "",
-            "full_name": "",
-            "passport_number": "",
-            "status": "",
+            "kyc_submission_id": "a1b2c3d4-5e6f-7g8h-9i0j-k1l2m3n4o5p6",
+            "full_name": "Rizky Setiawan",
+            "passport_number": "AB1234567",
+            "status": "Valid",
             "sex": "Male",
-            "nationality": "",
-            "date_of_birth": "",
-            "place_of_birth": "",
-            "authority": "",
-            "issued_date": "",
-            "expiry_date": "",
-            "age_estimate": "",
-            "face_match": false,
-            "passport_front_link": "",
-            "passport_face_link": ""
-        },
+            "nationality": "Indonesian",
+            "date_of_birth": "1992-05-15",
+            "place_of_birth": "Bandung, Indonesia",
+            "authority": "Immigration Office of Indonesia",
+            "issued_date": "2023-01-15",
+            "expiry_date": "2028-01-15",
+            "age_estimate": 32,
+            "face_match": true,
+            "passport_front_link": "https://example.com/passport/front",
+            "passport_face_link": "https://example.com/passport/face"
+        },        
         "employment_info": {
             "kyc_submission_id": "",
             "employer_name": "",
@@ -92,7 +93,8 @@ export const apiMockedData = [
             "phone_number": "+6281234567890",
             "signature_link": "",
             "image_logo": "",
-            "id_number": "AC4323"
+            "id_number": "AC4323",
+            "score": "0.9"
         },
         "passport_info": {
             "kyc_submission_id": "",
@@ -137,74 +139,6 @@ export const apiMockedData = [
         "org_id": "org_2YRl1STBQhtXbUz67bxaHtp2uk1"
     },    
 
-    {
-        "id": "87654321-bbbb-cccc-dddd-1234567890bb",
-        "created_at": "2023-12-05T11:45:22.987654Z",
-        "updated_at": "2023-12-05T11:45:22.987654Z",
-        "package_id": "33333333-bbbb-cccc-dddd-444444444444",
-        "checklist": {
-            "employment_verification_link": "https://www.sampleemploymentverify-indonesia.co.id",
-            "income_verification_link": "https://www.sampleincomeverify-indonesia.co.id",
-            "passport_verification_link": "https://www.samplepassportverify-indonesia.co.id"
-        },
-        "status": "accepted",
-        "user_info": {
-            "id": "12345678-bbbb-cccc-dddd-9876543210bb",
-            "created_at": "2023-12-05T11:45:22.987654Z",
-            "updated_at": "2023-12-05T11:45:22.987654Z",
-            "kyc_submission_id": "87654321-bbbb-cccc-dddd-1234567890bb",
-            "first_name": "Dewi",
-            "last_name": "Sukarno",
-            "nationality": "Indonesian",
-            "address": "Jl. Thamrin No. 456, Jakarta Pusat",
-            "email": "dewi.sukarno@example.co.id",
-            "phone_number": "+6289876543210",
-            "signature_link": "",
-            "image_logo": "",
-            "id_number": "AB1012"
-        },
-        "passport_info": {
-            "kyc_submission_id": "",
-            "full_name": "",
-            "passport_number": "",
-            "status": "",
-            "sex": "Male",
-            "nationality": "Indonessia",
-            "date_of_birth": "",
-            "place_of_birth": "",
-            "authority": "",
-            "issued_date": "",
-            "expiry_date": "",
-            "age_estimate": "",
-            "face_match": false,
-            "passport_front_link": "",
-            "passport_face_link": ""
-        },
-        "employment_info": {
-            "kyc_submission_id": "",
-            "employer_name": "",
-            "average_salary": 0,
-            "average_salary_level": "",
-            "employment_risk_level": "",
-            "employment_letter_link": "",
-            "employment_status": false
-        },
-        "bank_info": {
-            "kyc_submission_id": "",
-            "account_holder_name": "",
-            "bank_name": "",
-            "account_number": "",
-            "account_balance": 0,
-            "account_balance_risk_level": "",
-            "bank_statement_link": ""
-        },
-        "address_info": {
-            "kyc_submission_id": "",
-            "address": "",
-            "utility_bill_link": ""
-        },
-        "org_id": "org_2YRl1STBQhtXbUz67bxaHtp2uk1"
-    }
     
     
 ]

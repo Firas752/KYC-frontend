@@ -98,6 +98,8 @@ const Page = () => {
 		},
 	});
 
+	console.log(passportInfo)
+
 	const actionHolder = (
 		<Flex gap="1em">
 			<DefaultButton
@@ -144,6 +146,7 @@ const Page = () => {
 				<ContentViewContainer title="Profile">
 					<ProfileView
 						first_name={userInfo?.first_name}
+						score={userInfo?.score}
 						last_name={userInfo?.last_name}
 						nationality={userInfo?.nationality}
 						email={userInfo?.email}
