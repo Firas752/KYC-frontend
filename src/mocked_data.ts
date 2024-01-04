@@ -1,8 +1,8 @@
 export const apiMockedData = [
     {
         "id": "431147cc-1eba-4031-a826-672d51dae5af",
-        "created_at": "2023-11-27T07:11:38.007397Z",
-        "updated_at": "2023-11-27T07:11:38.007397Z",
+        "created_at": "2023-12-23T07:11:38.007397Z",
+        "updated_at": "2023-12-13T07:11:38.007397Z",
         "package_id": "4a4f71ae-9a62-4c64-9e00-ac523d2177fc",
         "checklist": {
             "employment_verification_link": "https://www.sampleemploymentverification.co.id",
@@ -12,8 +12,8 @@ export const apiMockedData = [
         "status": "accepted",
         "user_info": {
             "id": "37170b8e-be40-4470-8502-864c4d75b348",
-            "created_at": "2023-11-27T07:11:38.214401Z",
-            "updated_at": "2023-11-27T07:11:38.214401Z",
+            "created_at": "2023-12-27T07:11:38.214401Z",
+            "updated_at": "2023-12-27T07:11:38.214401Z",
             "kyc_submission_id": "431147cc-1eba-4031-a826-672d51dae5af",
             "first_name": "Siti",
             "last_name": "Rahayu",
@@ -86,7 +86,7 @@ export const apiMockedData = [
         "status": "accepted",
         "user_info": {
             "id": "37170b8e-be40-4470-8502-864c4d75b348",
-            "created_at": "2023-11-27T07:11:38.214401Z",
+            "created_at": "2023-12-23T07:11:38.214401Z",
             "updated_at": "2023-11-27T07:11:38.214401Z",
             "kyc_submission_id": "431147cc-1eba-4031-a826-672d51dae5af",
             "first_name": "Muhammad",
