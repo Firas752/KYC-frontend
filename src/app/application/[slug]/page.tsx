@@ -17,10 +17,14 @@ import { withQueryClient } from "@/HOC/withQueryClient";
 import { axiosInstance } from "@/config/axios";
 import { useParams, useSearchParams } from "next/navigation";
 import { AxiosError } from "axios";
+import { useStore } from "@/zustand/store";
+
 
 const Page = () => {
 	const params = useSearchParams();
 	const toast = useToast();
+	const {apiData: mockedData} = useStore();
+	
 	//@ts-ignore
 	const { slug } = useParams();
 	const packageId = params?.get("packageId");
@@ -45,17 +49,17 @@ const Page = () => {
 	}, [data, error]);
 
 	//@ts-ignore
-	const userInfo = apiData?.user_info;
+	const userInfo = mockedData?.user_info;
 	//@ts-ignore
-	const passportInfo = apiData?.passport_info;
+	const passportInfo = mockedData?.passport_info;
 	//@ts-ignore
-	const checklist = apiData?.checklist;
+	const checklist = mockedData?.checklist;
 	//@ts-ignore
-	const bankInfo = apiData?.bank_info;
+	const bankInfo = mockedData?.bank_info;
 	//@ts-ignore
-	const employementInfo = apiData?.employement_info;
+	const employementInfo = mockedData?.employement_info;
 	//@ts-ignore
-	const addressInfo = apiData?.address_info;
+	const addressInfo = mockedData?.address_info;
 
 	//handle actions ( Accept / Reject )
 	const actionMutation = useMutation({
@@ -123,6 +127,8 @@ const Page = () => {
 		</Flex>
 	);
 
+
+	
 	return (
 		//@ts-ignore
 		<DashboardLayout

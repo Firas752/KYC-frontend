@@ -17,6 +17,8 @@ import { useTanstackQuery } from "@/hooks/useTanstack";
 import { withQueryClient } from "@/HOC/withQueryClient";
 import { capitalizeFirstLetter } from "@/utils/capitalize_first_word";
 import { apiMockedData } from "@/mocked_data";
+import { FiEye } from "react-icons/fi";
+import { useStore } from "@/zustand/store";
 
 type ReturnType = {
 	id: string;
@@ -56,6 +58,7 @@ const tableHeader = [
 const AcceptedApplications = () => {
 	const [searchValue, setSearchValue] = useState(applicationData);
 	const toast = useToast();
+	const { updateApiData } = useStore();
 
 	//handle search
 	const handleSearch = (event: any) => {
@@ -173,22 +176,30 @@ const AcceptedApplications = () => {
 						<>
 							{searchValues?.map(
 								(
-									{
-										user_info,
-										id,
-										package_id,
+									items,
+									// {
+									// 	user_info,
+									// 	id,
+									// 	package_id,
 
-										status,
-										passport_info,
-										employment_info,
-										bank_info,
-										created_at,
-									},
+									// 	status,
+									// 	passport_info,
+									// 	employment_info,
+									// 	bank_info,
+									// 	created_at,
+									// },
 									key: number,
 								) => {
-									const nationality = user_info?.nationality;
+									const nationality = items?.user_info?.nationality;
+									const user_info = items?.user_info
+									const bank_info = items?.bank_info
+									const employement_info = items?.employment_info
+									const created_at = items?.created_at
+									const passport_info = items?.passport_info
+									const package_id = items?.package_id
+									const id= items?.id
 									let flag;
-
+									
 									switch (nationality.toLowerCase()) {
 										case "nigeria":
 											flag = "NG";
@@ -207,7 +218,7 @@ const AcceptedApplications = () => {
 											<Td>{key + 1}</Td>
 											<Td>
 												<BadgeSchema>
-													{capitalizeFirstLetter(status)}
+													{capitalizeFirstLetter(items?.status)}
 												</BadgeSchema>
 											</Td>
 											<Td>
@@ -234,7 +245,7 @@ const AcceptedApplications = () => {
 
 											<Td>
 												<Flex gap="1em">
-													<Text
+													{/* <Text
 														color={"alert.error"}
 														fontWeight={"600"}
 														cursor="pointer"
@@ -263,7 +274,7 @@ const AcceptedApplications = () => {
 														}
 													>
 														Accept
-													</Text>
+													</Text> */}
 													<Link
 														href={{
 															pathname: `/application/${id}`,
@@ -276,14 +287,18 @@ const AcceptedApplications = () => {
 															},
 														}}
 													>
+														<Flex gap='.3em' alignItems={'center'} >
+														<FiEye  color='#0C52B5' />
 														<Text
 															color={"alert.info"}
 															fontWeight={"600"}
 															cursor="pointer"
 															fontSize={"14px"}
+															onClick={() => updateApiData(items)}
 														>
 															View
 														</Text>
+														</Flex>
 													</Link>
 												</Flex>
 											</Td>
