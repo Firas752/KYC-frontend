@@ -6,9 +6,10 @@ interface IUtility {
 	address?: string;
 	city?: string;
 	utility_bill_url?: string;
+	bill?: string
 }
 
-const UtilityView: FC<IUtility> = ({ address, city, utility_bill_url }) => {
+const UtilityView: FC<IUtility> = ({ bill, address, city, utility_bill_url }) => {
 	return (
 		<Box>
 			<Flex gap={["1em", "3em"]} flexDir={["column-reverse", "column", "row"]}>
@@ -56,7 +57,7 @@ const UtilityView: FC<IUtility> = ({ address, city, utility_bill_url }) => {
 								lineHeight={"28px"}
 								my=".3em"
 							>
-								<Text>{utility_bill_url || "-"}</Text>
+								<Text>{bill || "-"}</Text>
 							</Box>
 						</Box>
 					</Box>

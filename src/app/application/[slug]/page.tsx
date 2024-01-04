@@ -207,9 +207,10 @@ const Page = () => {
 				
 				<ContentViewContainer title="Address & Utility Bill">
 					<UtilityView
-						city=""
+						city={userInfo?.city}
 						address={userInfo?.address}
 						utility_bill_url=""
+						bill={userInfo?.bill}
 					/>
 				</ContentViewContainer>
 				<ContentViewContainer title="User Behaviour">
