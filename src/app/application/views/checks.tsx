@@ -63,6 +63,19 @@ const lowRisk = (
 	</Box>
 );
 
+const highRisk = (
+	<Box
+		display={"flex"}
+		gap=".3em"
+		fontWeight={600}
+		lineHeight={"28px"}
+		alignItems={"center"}
+		my=".3em"
+	>
+		{verificationIcon} <Text>High Risk</Text>
+	</Box>
+);
+
 const yes = (
 	<Box
 		display={"flex"}
@@ -88,6 +101,7 @@ const ChecksView: FC<CheckView> = ({
 	email_check,
 	account_check,
 }) => {
+	
 	return (
 		<Box>
 			
@@ -111,7 +125,8 @@ const ChecksView: FC<CheckView> = ({
 								Passport Verification
 							</Text>
 							{/* {!isEmpty(passport_check) ? NotVerified : Verified} */}
-							{lowRisk}
+							{/* {lowRisk} */}
+							{employment_check ? lowRisk : highRisk}
 						</Box>
 
 						<Box>
@@ -150,7 +165,7 @@ const ChecksView: FC<CheckView> = ({
 							>
 								Account Balance
 							</Text>
-							{lowRisk}
+							{employment_check ? lowRisk : highRisk}
 
 							{/* {isEmpty(account_check) ? NotVerified : Verified} */}
 						</Box>
@@ -200,7 +215,7 @@ const ChecksView: FC<CheckView> = ({
 								Avarage Salary
 							</Text>
 							{/* {isEmpty(salary_check) ? NotVerified : Verified} */}
-							{lowRisk}
+							{employment_check ? lowRisk : highRisk}
 						</Box>
 
 						<Box>
@@ -218,7 +233,7 @@ const ChecksView: FC<CheckView> = ({
 					</Box>
 
 					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
-						<Box>
+						{/* <Box>
 							<Text
 								color="#666D76"
 								fontSize={["18px", "15px"]}
@@ -227,9 +242,9 @@ const ChecksView: FC<CheckView> = ({
 							>
 								Avarage Salary
 							</Text>
-							{/* {isEmpty(salary_check) ? NotVerified : Verified} */}
+						
 							{Verified}
-						</Box>
+						</Box> */}
 
 						<Box>
 							<Text

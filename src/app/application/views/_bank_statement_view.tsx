@@ -12,6 +12,7 @@ interface BankInformation {
 	currency?: string;
 	bank_name?: string;
 	country?: string;
+	salary?: string
 }
 
 const BankStatementView: FC<BankInformation> = ({
@@ -20,6 +21,7 @@ const BankStatementView: FC<BankInformation> = ({
 	bank_country,
 	bank_name,
 	country,
+	salary,
 	currency,
 }) => {
 	//@ts-ignore
@@ -192,7 +194,7 @@ const BankStatementView: FC<BankInformation> = ({
 								lineHeight={"28px"}
 								my=".3em"
 							>
-								<Text>{bank_holder_name || "-"}</Text>
+								<Text>{salary || "-"}</Text>
 							</Box>
 						</Box>
 

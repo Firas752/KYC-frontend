@@ -46,6 +46,7 @@ const EmploymentView: FC<IEmployment> = ({
 	company_name,
 	lastSalary
 }) => {
+	
 	return (
 		<Box>
 			<Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>

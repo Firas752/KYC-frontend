@@ -36,8 +36,8 @@ export const apiMockedData = [
             "date_of_birth": "1992-05-15",
             "place_of_birth": "Bandung, Indonesia",
             "authority": "Jakarta",
-            "issued_date": "2023-01-15",
-            "expiry_date": "2028-01-15",
+            "issued_date": "2021-06-15",
+            "expiry_date": "2026-05-19",
             "age_estimate": 32,
             "face_match": true,
             "passport_front_link": "https://example.com/passport/front",
@@ -50,7 +50,8 @@ export const apiMockedData = [
             "average_salary_level": "",
             "employment_risk_level": "",
             "employment_letter_link": "",
-            "employment_status": false
+            "employment_status": true,
+            "salary": "$1,500"
         },
         "bank_info": {
             "kyc_submission_id": "",
@@ -106,8 +107,8 @@ export const apiMockedData = [
             "date_of_birth": "1994-01-01", // Estimated birthdate for a 30-year-old
             "place_of_birth": "Jakarta, Indonesia",
             "authority": "Government of Indonesia",
-            "issued_date": "2023-01-01",
-            "expiry_date": "2028-01-01",
+            "issued_date": "2022-03-20",
+            "expiry_date": "2027-01-30",
             "age_estimate": 30,
             "face_match": false,
             "passport_front_link": "https://samplepassportfrontlink.co.id",
@@ -116,11 +117,12 @@ export const apiMockedData = [
         "employment_info": {
             "kyc_submission_id": "",
             "employer_name": "",
-            "average_salary": 0,
+            "average_salary": "$1,500",
             "average_salary_level": "",
             "employment_risk_level": "",
             "employment_letter_link": "",
-            "employment_status": false
+            "employment_status": false,
+            "salary": ""
         },
         "bank_info": {
             "kyc_submission_id": "",

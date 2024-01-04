@@ -183,7 +183,7 @@ const UtilityView = () => {
 						</Box> */}
 					</Box>
 
-					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
+					{/* <Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
 						<Box>
 							<Text
 								color="#666D76"
@@ -203,7 +203,7 @@ const UtilityView = () => {
 								<Text>{statmentIcon}</Text>
 							</Box>
 						</Box>
-					</Box>
+					</Box> */}
 				</Box>
 			</Flex>
 		</Box>

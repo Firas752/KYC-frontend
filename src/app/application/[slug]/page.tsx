@@ -62,7 +62,8 @@ const Page = () => {
 	//@ts-ignore
 	const bankInfo = mockedData?.bank_info;
 	//@ts-ignore
-	const employementInfo = mockedData?.employement_info;
+	const employementInfo = mockedData?.employment_info;
+	
 	//@ts-ignore
 	const addressInfo = mockedData?.address_info;
 
@@ -178,6 +179,7 @@ const Page = () => {
 					<EmploymentView
 						letter_link={employementInfo?.employment_letter_link || ""}
 						status={employementInfo?.employment_status}
+						salary={employementInfo?.salary}
 					/>
 				</ContentViewContainer>
 				{/* <ContentViewContainer title="Bank Statment">
@@ -198,6 +200,8 @@ const Page = () => {
 						bank_holder_name={bankInfo?.account_holder_name}
 						account_balance={bankInfo?.account_balance}
 						currency=""
+						salary={employementInfo?.salary}
+						
 					/>
 				</ContentViewContainer>
 				
