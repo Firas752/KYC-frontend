@@ -100,8 +100,6 @@ const UtilityView = () => {
 					flexWrap="wrap"
 				>
 					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
-						
-
 						<Box>
 							<Text
 								color="#666D76"
@@ -202,9 +200,7 @@ const UtilityView = () => {
 								lineHeight={"28px"}
 								my=".3em"
 							>
-								<Text>
-									{statmentIcon}
-								</Text>
+								<Text>{statmentIcon}</Text>
 							</Box>
 						</Box>
 					</Box>

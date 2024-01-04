@@ -149,7 +149,7 @@ const Page = () => {
 						issued_date={passportInfo?.issued_date}
 					/>
 				</ContentViewContainer>
-				<ContentViewContainer title="Checks">
+				<ContentViewContainer title="Risk Checks">
 					<ChecksView
 						email_check={userInfo?.email}
 						address_check={userInfo?.address}
@@ -159,7 +159,7 @@ const Page = () => {
 						account_check={bankInfo?.account_balance}
 					/>
 				</ContentViewContainer>
-				<ContentViewContainer title="Employment">
+				<ContentViewContainer title="Employment Information">
 					<EmploymentView
 						letter_link={employementInfo?.employment_letter_link || ""}
 						status={employementInfo?.employment_status}

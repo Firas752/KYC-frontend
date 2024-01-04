@@ -43,7 +43,11 @@ const ProfileView: FC<ProfileInterface> = ({
 	passport_front,
 	passport_face,
 }) => {
-	const [preview, setPreview] = useState<string | undefined>(passport_face);
+
+	const passPortImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwW1mXBeM5UMJM0WJ6rfj672naoFyIBbFRX0A7vKbG8-vyyZI0y0d-GZVMzWe_co6em0"
+	const userFaceImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwW1mXBeM5UMJM0WJ6rfj672naoFyIBbFRX0A7vKbG8-vyyZI0y0d-GZVMzWe_co6em0"
+	// const [preview, setPreview] = useState<string | undefined>(passport_face);
+	const [preview, setPreview] = useState<string | undefined>(userFaceImage);
 	const currentYear = new Date().getFullYear();
 
 	const birth_year = date_of_birth?.split("-")[0];
@@ -277,7 +281,7 @@ const ProfileView: FC<ProfileInterface> = ({
 								Age
 							</Text>
 							<Text fontWeight={600} lineHeight={"28px"}>
-								{applicant_age}
+								{!applicant_age ? applicant_age : "_"}
 							</Text>
 						</Box>
 					</Box>
@@ -288,12 +292,13 @@ const ProfileView: FC<ProfileInterface> = ({
 						h={["200px", "55%"]}
 						bg="gray.200"
 						borderRadius={"10px"}
-						backgroundImage={passport_front ? passport_front : ""}
+						// backgroundImage={passport_front ? passport_front : ""}
+						backgroundImage={preview}
 						backgroundSize={"cover"}
 						backgroundPosition={"center"}
 						backgroundRepeat={"no-repeat"}
 					>
-						{passport_front === "" || passport_front === null ? errorImage : ""}
+						{/* {passport_front === "" || passport_front === null ? errorImage : ""} */}
 					</Box>
 					<Flex my="1em" gap="1em">
 						<Box
@@ -302,15 +307,17 @@ const ProfileView: FC<ProfileInterface> = ({
 							h="80px"
 							bg="gray.200"
 							borderRadius={"10px"}
-							backgroundImage={passport_front ? passport_front : ""}
+							// backgroundImage={passport_front ? passport_front : ""}
+							backgroundImage={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwW1mXBeM5UMJM0WJ6rfj672naoFyIBbFRX0A7vKbG8-vyyZI0y0d-GZVMzWe_co6em0"}
 							backgroundSize={"cover"}
 							backgroundPosition={"center"}
 							backgroundRepeat={"no-repeat"}
-							onClick={() => setPreview(passport_front)}
+							// onClick={() => setPreview(passport_front)}
+							onClick={() => setPreview(userFaceImage)}
 						>
-							{passport_front === "" || passport_front === null
+							{/* {passport_front === "" || passport_front === null
 								? errorImage
-								: ""}
+								: ""} */}
 						</Box>
 						<Box
 							w={"100px"}
@@ -318,13 +325,14 @@ const ProfileView: FC<ProfileInterface> = ({
 							h="80px"
 							bg="gray.200"
 							borderRadius={"10px"}
-							backgroundImage={passport_face ? passport_face : ""}
+							// backgroundImage={passport_face ? passport_face : ""}
+							backgroundImage={passPortImage}
 							backgroundSize={"cover"}
 							backgroundPosition={"center"}
 							backgroundRepeat={"no-repeat"}
-							onClick={() => setPreview(passport_face)}
+							onClick={() => setPreview(passPortImage)}
 						>
-							{passport_face === "" || passport_face === null ? errorImage : ""}
+							{/* {passport_face === "" || passport_face === null ? errorImage : ""} */}
 						</Box>
 					</Flex>
 
@@ -336,10 +344,11 @@ const ProfileView: FC<ProfileInterface> = ({
 								fontWeight={600}
 								lineHeight={"28px"}
 							>
-								Issuing Date
+								Face Match
 							</Text>
 							<Text fontWeight={600} color={"#01C22C"} lineHeight={"28px"}>
-								{moment(issued_date).format("ll") || "-"}
+								{/* {moment(issued_date).format("ll") || "-"} */}
+								Success
 							</Text>
 						</Box>
 
