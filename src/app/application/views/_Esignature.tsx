@@ -1,6 +1,11 @@
 "use client";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
+
+interface IBills {
+	device?: string, 
+	passportDate?: string
+}
 
 const statmentIcon = (
 	<svg
@@ -26,7 +31,7 @@ const statmentIcon = (
 	</svg>
 );
 
-const UtilityView = () => {
+const UtilityView: FC <IBills> = ({device , passportDate}) => {
 	return (
 		<Box>
 			{/* <Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>
@@ -116,7 +121,7 @@ const UtilityView = () => {
 								lineHeight={"28px"}
 								my=".3em"
 							>
-								<Text></Text>
+								<Text>{passportDate || "-"}</Text>
 							</Box>
 						</Box>
 
@@ -136,7 +141,7 @@ const UtilityView = () => {
 								lineHeight={"28px"}
 								my=".3em"
 							>
-								<Text>phone 11</Text>
+								<Text>{device || "-"}</Text>
 							</Box>
 						</Box>
 					</Box>
@@ -158,7 +163,7 @@ const UtilityView = () => {
 								lineHeight={"28px"}
 								my=".3em"
 							>
-								<Text>YES</Text>
+								<Text>Yes</Text>
 							</Box>
 						</Box>
 

@@ -213,7 +213,7 @@ const Page = () => {
 					/>
 				</ContentViewContainer>
 				<ContentViewContainer title="User Behaviour">
-					<Esignature />
+					<Esignature passportDate={passportInfo?.issued_date} device={userInfo?.device}/>
 				</ContentViewContainer>
 			</Box>
 		</DashboardLayout>

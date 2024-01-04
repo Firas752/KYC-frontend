@@ -24,7 +24,8 @@ export const apiMockedData = [
             "signature_link": "",
             "image_logo": "",
             "id_number": "A34323",
-            "score": "0.8"
+            "score": "0.8",
+            "device": "Iphone 11"
         },
         "passport_info": {
             "kyc_submission_id": "a1b2c3d4-5e6f-7g8h-9i0j-k1l2m3n4o5p6",
@@ -95,7 +96,9 @@ export const apiMockedData = [
             "signature_link": "",
             "image_logo": "",
             "id_number": "AC4323",
-            "score": "0.9"
+            "score": "0.9",
+           
+            "device": "Redmi Note 10"
         },
         "passport_info": {
             "kyc_submission_id": "",
