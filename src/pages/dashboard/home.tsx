@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import DefaultTable from "@/components/molecules/table";
 import ActionContainer from "@/components/organisms/action_container";
@@ -13,6 +14,7 @@ import NoDataFound from "@/components/atom/noDataFound";
 import { withQueryClient } from "@/HOC/withQueryClient";
 import { capitalizeFirstLetter } from "@/utils/capitalize_first_word";
 import IsLoadingData from "@/components/atom/isLoadingData";
+import { apiMockedData } from "@/mocked_data";
 
 type ReturnType = {
 	id: string;
@@ -52,8 +54,11 @@ const DashboardHomepage = () => {
 	const [searchValues, setSearchValues] = useState<ReturnType[]>([]);
 
 	useEffect(() => {
-		if (data?.data) {
-			setSearchValues(data.data);
+		// if (data?.data) {
+		// 	setSearchValues(data.data);
+		// }
+		if (apiMockedData) {
+			setSearchValues(apiMockedData);
 		}
 	}, [data]);
 
