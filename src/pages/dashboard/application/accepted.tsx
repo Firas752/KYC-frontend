@@ -166,7 +166,7 @@ const AcceptedApplications = () => {
 
 	return (
 		<div>
-			<ActionContainer title="Accepted Applications" onChange={handleSearchBar}>
+			<ActionContainer title="Accepted Applications" onChange={""}>
 				{searchValues?.length === 0 ? (
 					<Box overflow={"none"}>
 						<NoDataFound />
