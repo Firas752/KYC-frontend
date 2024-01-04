@@ -27,7 +27,7 @@ const Page = () => {
 
 	const url = `/packages/${packageId}/kyc-submissions/${slug}`;
 	const applicationId = params?.get("app_id");
-	const passport_no = params?.get("passport_no");
+	const passport_no = params?.get("app_id");
 	const { data, isError, error } = useQuery({
 		queryKey: ["fetch_kyc_user"],
 		queryFn: () => {
@@ -140,7 +140,7 @@ const Page = () => {
 						address={userInfo?.address}
 						passport_front={passportInfo?.passport_front_link}
 						passport_face={passportInfo?.passport_face_link}
-						passport_number={passportInfo?.passport_number}
+						passport_number={passportInfo?.passport_number ? passportInfo.passport_number : userInfo?.id_number}
 						date_of_birth={passportInfo?.date_of_birth}
 						place_of_birth={passportInfo?.place_of_birth}
 						sex={passportInfo?.sex}
