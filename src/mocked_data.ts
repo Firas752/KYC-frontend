@@ -23,7 +23,7 @@ export const apiMockedData = [
             "phone_number": "+6281234567890",
             "signature_link": "",
             "image_logo": "",
-            "id_number": "1234567890123456"
+            "id_number": "A34323"
         },
         "passport_info": {
             "kyc_submission_id": "",
@@ -92,12 +92,12 @@ export const apiMockedData = [
             "phone_number": "+6281234567890",
             "signature_link": "",
             "image_logo": "",
-            "id_number": "1234567890123456"
+            "id_number": "AC4323"
         },
         "passport_info": {
             "kyc_submission_id": "",
             "full_name": "Siti Rahayu",
-            "passport_number": "ABC123XYZ",
+            "passport_number": "AB1012",
             "status": "Valid",
             "sex": "Male",
             "nationality": "Indonesian",
@@ -161,7 +161,7 @@ export const apiMockedData = [
             "phone_number": "+6289876543210",
             "signature_link": "",
             "image_logo": "",
-            "id_number": "9876543210987654"
+            "id_number": "AB1012"
         },
         "passport_info": {
             "kyc_submission_id": "",

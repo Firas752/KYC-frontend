@@ -186,7 +186,7 @@ const Page = () => {
 						currency=""
 					/>
 				</ContentViewContainer> */}
-				<ContentViewContainer title="Finacial Standing">
+				<ContentViewContainer title="Financial Standing">
 					<BankStatementView
 						country={userInfo?.nationality}
 						bank_country={userInfo?.nationality}

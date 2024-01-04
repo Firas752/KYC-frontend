@@ -203,7 +203,7 @@ const BankStatementView: FC<BankInformation> = ({
 								fontWeight={600}
 								lineHeight={"28px"}
 							>
-								Bank Name
+								Insurance Card
 							</Text>
 							<Box
 								display={"flex"}
@@ -216,25 +216,7 @@ const BankStatementView: FC<BankInformation> = ({
 							</Box>
 						</Box>
 
-						<Box>
-							<Text
-								color="#666D76"
-								fontSize={["18px", "15px"]}
-								fontWeight={600}
-								lineHeight={"28px"}
-							>
-								Bank Statement
-							</Text>
-							<Box
-								display={"flex"}
-								gap=".3em"
-								fontWeight={600}
-								lineHeight={"28px"}
-								my=".3em"
-							>
-								<Text>Bank Statemetn</Text>
-							</Box>
-						</Box>
+						
 					</Box>
 
 					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
@@ -245,7 +227,7 @@ const BankStatementView: FC<BankInformation> = ({
 								fontWeight={600}
 								lineHeight={"28px"}
 							>
-								Bank Country
+								Last Salary Payment
 							</Text>
 							<Box
 								display={"flex"}
@@ -258,25 +240,7 @@ const BankStatementView: FC<BankInformation> = ({
 							</Box>
 						</Box>
 
-						<Box>
-							<Text
-								color="#666D76"
-								fontSize={["18px", "15px"]}
-								fontWeight={600}
-								lineHeight={"28px"}
-							>
-								Currency
-							</Text>
-							<Box
-								display={"flex"}
-								gap=".3em"
-								fontWeight={600}
-								lineHeight={"28px"}
-								my=".3em"
-							>
-								<Text>{country_currency || "-"}</Text>
-							</Box>
-						</Box>
+						
 					</Box>
 
 					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
@@ -287,7 +251,7 @@ const BankStatementView: FC<BankInformation> = ({
 								fontWeight={600}
 								lineHeight={"28px"}
 							>
-								Account Balance
+								Debit/Credit Cat
 							</Text>
 							<Box
 								display={"flex"}
