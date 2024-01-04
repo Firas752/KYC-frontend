@@ -52,7 +52,7 @@ const ProfileView: FC<ProfileInterface> = ({
 
 	const birth_year = date_of_birth?.split("-")[0];
 	const applicant_age = currentYear - birth_year;
-	console.log(issued_date , "hello")
+	console.log(applicant_age)
 
 	const errorImage = (
 		<Flex h="100%" alignItems={"center"} justifyContent={"center"}>
@@ -282,7 +282,7 @@ const ProfileView: FC<ProfileInterface> = ({
 								Age
 							</Text>
 							<Text fontWeight={600} lineHeight={"28px"}>
-								{!applicant_age ? applicant_age : "_"}
+								{applicant_age }
 							</Text>
 						</Box>
 					</Box>

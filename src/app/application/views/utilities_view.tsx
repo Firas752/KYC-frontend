@@ -105,9 +105,9 @@ const UtilityView: FC<IUtility> = ({ address, city, utility_bill_url }) => {
 						</Box>
 					</Box>
 				</Box>
-				<Box w={["100%", "100%", "40%"]} h="200px" bg="gray.100">
+				{/* <Box w={["100%", "100%", "40%"]} h="200px" bg="gray.100">
 					
-				</Box>
+				</Box> */}
 			</Flex>
 		</Box>
 	);
