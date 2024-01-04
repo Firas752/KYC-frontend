@@ -140,7 +140,8 @@ const Page = () => {
 		//@ts-ignore
 		<DashboardLayout
 			title={`Ref - ${passport_no || "No Passport Number"} `}
-			headerContent={actionHolder}
+			// headerContent={actionHolder}
+			headerContent={""}
 		>
 			<Box display={"flex"} flexDir={"column"} gap="1.5em">
 				<ContentViewContainer title="Profile">
