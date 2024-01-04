@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import React, { useState } from "react";
 import ActionContainer from "@/components/organisms/action_container";
@@ -15,6 +16,7 @@ import moment from "moment";
 import { useTanstackQuery } from "@/hooks/useTanstack";
 import { withQueryClient } from "@/HOC/withQueryClient";
 import { capitalizeFirstLetter } from "@/utils/capitalize_first_word";
+import { apiMockedData } from "@/mocked_data";
 
 type ReturnType = {
 	id: string;
@@ -74,13 +76,21 @@ const AcceptedApplications = () => {
 	const [searchValues, setSearchValues] = useState<ReturnType[]>([]);
 
 	useEffect(() => {
-		if (data?.data) {
-			const filteredData = data?.data.filter(
+		// if (data?.data) {
+		// 	const filteredData = data?.data.filter(
+		// 		(item: ReturnType) => item.status === "accepted",
+		// 	);
+
+		// 	setSearchValues(filteredData);
+		// }
+		if (apiMockedData) {
+			const filteredData = apiMockedData.filter(
 				(item: ReturnType) => item.status === "accepted",
 			);
 
 			setSearchValues(filteredData);
 		}
+		
 	}, [data]);
 
 	const deleteVerification = useMutation({
@@ -205,7 +215,8 @@ const AcceptedApplications = () => {
 													<Box
 														w="40px"
 														h="35px"
-														backgroundImage={`https://flagsapi.com/${flag}/flat/64.png`}
+														backgroundImage={`https://flagsapi.com/ID/flat/64.png`}
+														// backgroundImage={`https://flagsapi.com/${flag}/flat/64.png`}
 														borderRadius={"30px"}
 														backgroundRepeat={"no-repeat"}
 														backgroundSize={"contain"}
