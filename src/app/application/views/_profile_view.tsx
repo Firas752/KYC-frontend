@@ -45,14 +45,14 @@ const ProfileView: FC<ProfileInterface> = ({
 }) => {
 
 	const passPortImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwW1mXBeM5UMJM0WJ6rfj672naoFyIBbFRX0A7vKbG8-vyyZI0y0d-GZVMzWe_co6em0"
-	const userFaceImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwW1mXBeM5UMJM0WJ6rfj672naoFyIBbFRX0A7vKbG8-vyyZI0y0d-GZVMzWe_co6em0"
+	const userFaceImage = "/images/selfie_preview.svg"
 	// const [preview, setPreview] = useState<string | undefined>(passport_face);
 	const [preview, setPreview] = useState<string | undefined>(userFaceImage);
 	const currentYear = new Date().getFullYear();
 
 	const birth_year = date_of_birth?.split("-")[0];
 	const applicant_age = currentYear - birth_year;
-	console.log(applicant_age)
+
 
 	const errorImage = (
 		<Flex h="100%" alignItems={"center"} justifyContent={"center"}>
@@ -309,7 +309,7 @@ const ProfileView: FC<ProfileInterface> = ({
 							bg="gray.200"
 							borderRadius={"10px"}
 							// backgroundImage={passport_front ? passport_front : ""}
-							backgroundImage={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwW1mXBeM5UMJM0WJ6rfj672naoFyIBbFRX0A7vKbG8-vyyZI0y0d-GZVMzWe_co6em0"}
+							backgroundImage={userFaceImage}
 							backgroundSize={"cover"}
 							backgroundPosition={"center"}
 							backgroundRepeat={"no-repeat"}
