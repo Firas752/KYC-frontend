@@ -27,7 +27,7 @@ const BankStatementView: FC<BankInformation> = ({
 
 	return (
 		<Box>
-			<Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>
+			{/* <Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>
 				<Box
 					w={"100%"}
 					display={"flex"}
@@ -165,7 +165,148 @@ const BankStatementView: FC<BankInformation> = ({
 						</Box>
 					</Box>
 				</Box>
+			</Flex> */}
+
+<Flex gap={["1em", "3em"]} flexDir={["column-reverse", "row"]}>
+				<Box
+					w={"100%"}
+					display={"flex"}
+					gap="1em"
+					justifyContent={"space-between"}
+					flexWrap="wrap"
+				>
+					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Salary
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>{bank_holder_name || "-"}</Text>
+							</Box>
+						</Box>
+
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Bank Name
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>{bank_name || "-"}</Text>
+							</Box>
+						</Box>
+
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Bank Statement
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>Bank Statemetn</Text>
+							</Box>
+						</Box>
+					</Box>
+
+					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Bank Country
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>{bank_country || "-"}</Text>
+							</Box>
+						</Box>
+
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Currency
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>{country_currency || "-"}</Text>
+							</Box>
+						</Box>
+					</Box>
+
+					<Box w="190px" display={"flex "} flexDir={"column"} gap="2em">
+						<Box>
+							<Text
+								color="#666D76"
+								fontSize={["18px", "15px"]}
+								fontWeight={600}
+								lineHeight={"28px"}
+							>
+								Account Balance
+							</Text>
+							<Box
+								display={"flex"}
+								gap=".3em"
+								fontWeight={600}
+								lineHeight={"28px"}
+								my=".3em"
+							>
+								<Text>
+									{currencyFormatter.format(account_balance, {
+										code: country_currency,
+									}) || "-"}
+								</Text>
+							</Box>
+						</Box>
+					</Box>
+				</Box>
 			</Flex>
+
 		</Box>
 	);
 };

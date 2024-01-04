@@ -282,7 +282,7 @@ const AcceptedApplications = () => {
 																packageId: package_id,
 																first_name: user_info?.first_name,
 																last_name: user_info?.last_name,
-																// app_id: user_info?.id_number,
+																 app_id: user_info?.id_number,
 																passport_no: passport_info?.passport_number,
 															},
 														}}

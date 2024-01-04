@@ -35,6 +35,7 @@ const Page = () => {
 
 	const url = `/packages/${packageId}/kyc-submissions/${slug}`;
 	const applicationId = params?.get("app_id");
+	
 	const passport_no = params?.get("app_id");
 	const { data, isError, error } = useQuery({
 		queryKey: ["fetch_kyc_user"],
@@ -175,7 +176,17 @@ const Page = () => {
 						status={employementInfo?.employment_status}
 					/>
 				</ContentViewContainer>
-				<ContentViewContainer title="Bank Statment">
+				{/* <ContentViewContainer title="Bank Statment">
+					<BankStatementView
+						country={userInfo?.nationality}
+						bank_country={userInfo?.nationality}
+						bank_name={bankInfo?.bank_name}
+						bank_holder_name={bankInfo?.account_holder_name}
+						account_balance={bankInfo?.account_balance}
+						currency=""
+					/>
+				</ContentViewContainer> */}
+				<ContentViewContainer title="Finacial Standing">
 					<BankStatementView
 						country={userInfo?.nationality}
 						bank_country={userInfo?.nationality}
@@ -185,6 +196,7 @@ const Page = () => {
 						currency=""
 					/>
 				</ContentViewContainer>
+				
 				<ContentViewContainer title="Address & Utility Bill">
 					<UtilityView
 						city=""
