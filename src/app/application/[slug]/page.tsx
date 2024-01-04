@@ -1,3 +1,7 @@
+//we are using mocked datas for now 
+//all datas are store in the zustand store 
+// when pushed live we can remove the mockedData state and fetch the main Api Data
+
 "use client";
 import DashboardLayout from "@/layouts/dashboard_layout";
 import { Text, Flex, Box, useToast } from "@chakra-ui/react";
