@@ -51,7 +51,7 @@ const NationlityPage = () => {
 		// /@ts-ignore
 		setFilteredData(filteredData);
 	};
-
+	
 	return (
 		<SimpleLayout heading="Select your nationality">
 			{/* HIDE SEARCH BAR FOR NOW 

@@ -47,7 +47,7 @@ const Page = () => {
 				status: "success",
 				position: "top",
 				title: " created",
-				description: "Package has been  created successfully",
+				description: "Package has been created successfully",
 			});
 		},
 		onError: (err: AxiosError) => {

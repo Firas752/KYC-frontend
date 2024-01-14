@@ -69,13 +69,13 @@ const Page = () => {
 	console.log(checklistItems);
 
 	const verification_details = [
-		{
-			title: "Instant Verification",
-			name: "Passport",
-			description: `Scan your passport's photo page`,
-			icon: passport_verification_svg,
-			link: checklistItems?.passport_verification_link,
-		},
+		// {
+		// 	title: "Instant Verification",
+		// 	name: "Passport",
+		// 	description: `Scan your passport's photo page`,
+		// 	icon: passport_verification_svg,
+		// 	link: checklistItems?.passport_verification_link,
+		// },
 		{
 			title: "Instant Verification",
 			name: "Income",
