@@ -5,7 +5,7 @@ import ActiveRequirements from "@/app/requirement/views/active";
 
 const RequirementPage = () => {
 	const lists = ["Active"];
-
+	console.log("asan was here with test");
 	const applicationListItems: JSX.Element[] = [<ActiveRequirements />];
 	return (
 		<div>
