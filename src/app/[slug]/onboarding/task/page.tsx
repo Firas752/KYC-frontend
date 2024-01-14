@@ -67,7 +67,7 @@ const Page = () => {
 	const checklistItems = checklistData?.checklist;
 
 	console.log(checklistItems);
-
+	console.log("asan was here with test");
 	const verification_details = [
 		// {
 		// 	title: "Instant Verification",
