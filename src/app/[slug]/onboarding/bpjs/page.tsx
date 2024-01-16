@@ -97,46 +97,18 @@ const bpjs = () => {
 		marginLeft: "1.7em",
 	};
 
-	const [phoneNumber, setPhoneNumber] = useState(kycData.phone_number || "");
-
-	const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
-		setPhoneNumber(e);
-		formik.setFieldValue("phone_number", e);
-		setPhoneNumberError(!isPhoneValid(e));
-	};
 
 	const handleBvn = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value.toString();
 		formik.setFieldValue("bvn", value);
 	};
-	const isValidate = isPhoneValid(phoneNumber);
+	
 
-	useEffect(() => {
-		setDisabled(!isValidate);
-	}, [phoneNumber, isValidate]);
-
+	
 	return (
-		<SimpleLayout heading="Personal Infomation">
+		<SimpleLayout heading="Log In into your BPJS account">
 			<form onSubmit={formik.handleSubmit}>
 				<Box pos="relative">
-					<LabeledInput
-						type="text"
-						label="First Name"
-						name="first_name"
-						value={formik.values.first_name}
-						onChange={formik.handleChange}
-						isInvalid={formik.errors.first_name ? true : false}
-						errorMessage={formik.errors.first_name && formik.errors.first_name}
-					/>
-					<LabeledInput
-						type="text"
-						label="Last Name"
-						name="last_name"
-						value={formik.values.last_name}
-						onChange={formik.handleChange}
-						isInvalid={formik.errors.last_name ? true : false}
-						errorMessage={formik.errors.last_name && formik.errors.last_name}
-					/>
 					<LabeledInput
 						type="email"
 						label="Email"
@@ -146,32 +118,16 @@ const bpjs = () => {
 						isInvalid={formik.errors.email ? true : false}
 						errorMessage={formik.errors.email && formik.errors.email}
 					/>
-
-					<FormControl
-						isInvalid={formik.errors.phone_number ? true : false}
-						zindex={99999}
-					>
-						<FormLabel htmlFor="input" style={customLabelStyle}>
-							Phone number
-						</FormLabel>
-						<PhoneInput
-							defaultCountry={pickCountryCode}
-							value={formik.values.phone_number}
-							showDisabledDialCodeAndPrefix={true}
-							onChange={handlePhone}
-							inputStyle={{
-								width: "100%",
-								padding: "1.91em 1em",
-								border: `${formik.errors.phone_number ? "2px solid red" : ""}`,
-							}}
+					
+					<LabeledInput
+						type="password"
+						label="Password"
+						name="password"
+						value={formik.values.password}
+						onChange={formik.handleChange}
+						isInvalid={formik.errors.password ? true : false}
+						errorMessage={formik.errors.password && formik.errors.password}
 						/>
-
-						{!phoneNumberError && (
-							<Box mt="0.5em">
-								<Text color={"green"}>Phone number is valid</Text>
-							</Box>
-						)}
-					</FormControl>
 
 					{!check_nationality && (
 						<LabeledInput
@@ -185,18 +141,6 @@ const bpjs = () => {
 							isRequired
 						/>
 					)}
-
-					<Box position={"relative"}>
-						<LabeledInput
-							type="text"
-							label="Address"
-							name="address"
-							onChange={formik.handleChange}
-							value={formik.values.address}
-							isInvalid={formik.errors.address ? true : false}
-							errorMessage={formik.errors.address && formik.errors.address}
-						/>
-					</Box>
 
 					<Flex w="100%" gap="1em" mt="1em" position={"absolute"} bottom="-7em">
 						<MobileButton w="100%" bg="none" color="black" onClick={goToBack}>
