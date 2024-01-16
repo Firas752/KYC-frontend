@@ -16,6 +16,8 @@ import { applicationData, currentCountry } from "@/data/application_data";
 import { BsCheck } from "react-icons/bs";
 import { useStore } from "@/zustand/store";
 
+
+
 const searchIcon = (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +38,13 @@ const searchIcon = (
 
 const NationlityPage = () => {
 	const router = useRouter();
-	const goToNext = () => router.push("personal-info");
+	const goToNext = () => {
+		if (selectedState === "Indonesia") {
+		  router.push("/indonesia-route"); // replace "/indonesia-route" with the actual route for Indonesia
+		} else {
+		  router.push("/personal-info");
+		}
+	  };
 	const [isFiltered, setFilteredData] = useState(currentCountry);
 	const [isDisabled, setDisabled] = useState<boolean>(true);
 	const [selectedState, setSelectedState] = useState<string>("");
