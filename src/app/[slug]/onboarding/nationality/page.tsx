@@ -40,7 +40,7 @@ const NationlityPage = () => {
 	const router = useRouter();
 	const goToNext = () => {
 		if (selectedState === "Indonesia") {
-		  router.push("/task"); // replace "/indonesia-route" with the actual route for Indonesia
+		  router.push("/signature"); // replace "/indonesia-route" with the actual route for Indonesia
 		} else {
 		  router.push("/personal-info");
 		}

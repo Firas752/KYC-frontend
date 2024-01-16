@@ -52,10 +52,7 @@ const bpjs = () => {
 
 	const payload = {
 		email: email || "",
-		phone_number: phone_number || "",
-		first_name: first_name || "",
-		last_name: last_name || "",
-		address: address || "",
+		password: password || "",
 		signature_link: "",
 	};
 
