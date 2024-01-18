@@ -2,157 +2,157 @@
 "use client";
 import SimpleLayout from "@/layouts/user/simpleLayout";
 import {
-	Box,
-	InputGroup,
-	Input,
-	Text,
-	InputRightElement,
 	Flex,
+	Box,
+	FormControl,
+	FormLabel,
+	FormErrorMessage,
+	FormErrorIcon,
+	Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { MobileButton } from "@/components/atom/button";
+import { LabeledInput } from "@/components/atom/input";
 import { useRouter } from "next/navigation";
-import { applicationData, currentCountry } from "@/data/application_data";
-import { BsCheck } from "react-icons/bs";
+import { kyc_personal_info_schema } from "@/validations";
+import { useFormik } from "formik";
 import { useStore } from "@/zustand/store";
+import { PhoneNumberUtil } from "google-libphonenumber";
 
-
-
-const searchIcon = (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="24"
-		height="24"
-		viewBox="0 0 24 24"
-		fill="none"
-	>
-		<path
-			d="M21 21L15.0001 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-			stroke="#4B4A54"
-			stroke-width="2"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-		/>
-	</svg>
-);
+import {
+	PhoneInput,
+	defaultCountries,
+	parseCountry,
+} from "react-international-phone";
+import "react-international-phone/style.css";
 
 const Employee = () => {
 	const router = useRouter();
-	const goToNext = () => {
-		if (selectedState === "Indonesia") {
-			localStorage.setItem('selectedCountry', "Indonesia");
-			router.push("signature"); // replace "/indonesia-route" with the actual route for Indonesia
-		} else {
-		  router.push("personal-info");
-		}
-	  };
-	const [isFiltered, setFilteredData] = useState(currentCountry);
-	const [isDisabled, setDisabled] = useState<boolean>(true);
-	const [selectedState, setSelectedState] = useState<string>("");
-	const { updateKycData } = useStore();
-	//handle search
-	const handleSearch = (event: any) => {
-		const value = event.target.value.toLowerCase();
-		const filteredData = currentCountry.filter(
-			(data) => data?.nation.toLocaleLowerCase().includes(value),
-		);
+	const { updateKycData, kycData } = useStore();
+	const nationality = kycData.nationality;
+	const [disabled, setDisabled] = useState(false);
+	const [phoneNumberError, setPhoneNumberError] = useState(false);
 
-		// /@ts-ignore
-		setFilteredData(filteredData);
+	const check_nationality =
+		nationality === "Indonesia" || nationality === "indonesia";
+
+	const isNigerian = nationality === "Nigeria" || nationality === "nigeria";
+
+	const { email, phone_number, bvn } = kycData;
+
+	const payload = {
+		email: email || "",
+		phone_number: phone_number || "",
 	};
-	
+
+	if (isNigerian) {
+		payload.bvn =
+			typeof bvn === "string" || typeof bvn === "number" ? String(bvn) : "";
+	}
+
+	const formik = useFormik({
+		initialValues: payload,
+		validateOnChange: true,
+		validateOnBlur: true,
+		onSubmit: async (values, { setErrors }) => {
+			try {
+				await kyc_personal_info_schema.validate(values, { abortEarly: false });
+				updateKycData(values);
+
+				router.push("signature");
+			} catch (validationErrors) {
+				const errors = {};
+				validationErrors.inner.forEach((error) => {
+					const fieldName = error.path;
+					errors[fieldName] = error.message;
+				});
+				setErrors(errors);
+				console.log(formik.errors);
+			}
+		},
+	});
+
+	const pickCountryCode = check_nationality ? "id" : "ng";
+	const goToBack = () => router.back();
+
+	const customLabelStyle = {
+		position: "absolute",
+		top: "-13px",
+		color: "#828282",
+		zIndex: 99999,
+		backgroundColor: "#fff",
+		padding: "0 em",
+		width: "fit-content",
+		marginLeft: "1.7em",
+	};
+
+
+	const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
+		setPhoneNumber(e);
+		formik.setFieldValue("phone_number", e);
+		setPhoneNumberError(!isPhoneValid(e));
+	};
+
+	const handleBvn = (e: ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value.toString();
+		formik.setFieldValue("bvn", value);
+	};
+	const isValidate = isPhoneValid(phoneNumber);
+
+	useEffect(() => {
+		setDisabled(!isValidate);
+	}, [phoneNumber, isValidate]);
+
 	return (
-		<SimpleLayout heading="Select your nationality">
-			{/* HIDE SEARCH BAR FOR NOW 
-			SINCE WE ARE ONLY USING 2 COUNTRIES */}
-			{/* <Box>
-				<InputGroup>
-					<InputRightElement>{searchIcon}</InputRightElement>
-					<Input
-						type="search"
-						placeholder="Search for country"
-						size="lg"
-						onChange={handleSearch}
+		<SimpleLayout heading="Personal Infomation">
+			<form onSubmit={formik.handleSubmit}>
+				<Box pos="relative">
+					<LabeledInput
+						type="email"
+						label="Email"
+						name="email"
+						value={formik.values.email}
+						onChange={formik.handleChange}
+						isInvalid={formik.errors.email ? true : false}
+						errorMessage={formik.errors.email && formik.errors.email}
 					/>
-				</InputGroup>
-			</Box> */}
+					<LabeledInput
+						type="phone"
+						label="Phone Number"
+						name="phone_number"
+						value={formik.values.email}
+						onChange={formik.handleChange}
+						isInvalid={formik.errors.email ? true : false}
+						errorMessage={formik.errors.email && formik.errors.email}
+					/>
 
-			<Box my="1em" display={"flex"} gap="1em" flexDir={"column"}>
-				{isFiltered.length === 0 ? (
-					<h1>No Country Found</h1>
-				) : (
-					<>
-						{isFiltered?.map((_, key) => {
-							return (
-								<Box
-									key={key}
-									border={"1px solid var(--primary-gray)"}
-									w="100%"
-									height={"53px"}
-									borderRadius={"md"}
-									display={"flex"}
-									alignItems={"center"}
-									px="1em"
-									color={"#635D9E"}
-									cursor={"pointer"}
-									_hover={{
-										background: "#8080800d",
-									}}
-									onClick={() => {
-										setDisabled(false);
-										setSelectedState(_.nation);
-										if (_.nation === "Indonesia") {
-											localStorage.setItem('selectedCountry', "Indonesia");
-										}
-										const nationality = {
-											nationality: _.nation,
-										};
+					{!check_nationality && (
+						<LabeledInput
+							type="number"
+							label="BVN"
+							name="bvn"
+							value={formik.values.bvn}
+							onChange={handleBvn}
+							isInvalid={formik.errors.bvn ? true : false}
+							errorMessage={formik.errors.bvn && formik.errors.bvn}
+							isRequired
+						/>
+					)}
 
-										updateKycData(nationality);
-									}}
-									justifyContent={"space-between"}
-								>
-									<Flex alignItems={"center"}>
-										<Box
-											w="50px"
-											h="25px"
-											backgroundImage={_.countryFlag}
-											borderRadius={"30px"}
-											backgroundRepeat={"no-repeat"}
-											backgroundSize={"contain"}
-											backgroundPosition={"center"}
-										></Box>
-										<Text fontWeight={500} letterSpacing={"-0.28px"}>
-											{_?.nation}
-										</Text>
-									</Flex>
 
-									{_?.nation === selectedState && (
-										<BsCheck size="1.5em" color={"brand.primary"} />
-									)}
-								</Box>
-							);
-						})}
-					</>
-				)}
-			</Box>
-
-			<Flex w="100%" gap="1em">
-				<MobileButton
-					w="100%"
-					bg="none"
-					color="black"
-					onClick={() => router.back()}
-				>
-					Cancel
-				</MobileButton>
-
-				<MobileButton w="100%" onClick={goToNext} isDisabled={isDisabled}>
-					Next
-				</MobileButton>
-			</Flex>
+					<Flex w="100%" gap="1em" mt="1em" position={"absolute"} bottom="-7em">
+						<MobileButton w="100%" bg="none" color="black" onClick={goToBack}>
+							Back
+						</MobileButton>
+						<MobileButton type="submit" w="100%" isDisabled={disabled}>
+							Next
+						</MobileButton>
+					</Flex>
+				</Box>
+			</form>
 		</SimpleLayout>
 	);
 };
+
 
 export default Employee;
