@@ -65,12 +65,7 @@ const Page = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { checklistData } = useStore();
 	const checklistItems = checklistData?.checklist;
-
-	const [showEmployment, setShowEmployment] = useState(false);
-
-  const handleEmploymentClick = () => {
-    setShowEmployment(true);
-  };
+	
 
 	console.log(checklistItems);
 	console.log("asan was here with test");
@@ -135,7 +130,6 @@ const Page = () => {
 									justifyContent={"space-between"}
 									cursor={"pointer"}
 									my="1.5em"
-									onClick={_.name === 'Employement' ? handleEmploymentClick : undefined}
 								>
 									<Flex alignItems="center" gap="15px">
 										<Box>{_.icon}</Box>

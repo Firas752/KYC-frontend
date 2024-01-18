@@ -165,13 +165,14 @@ const Signature = () => {
 						  // Do something when the selected country is Indonesia
 							
 						  	router.push("task"); // replace "/next-page" with the path of your next page
+							  console.log(selectedCountry)
+							  console.log()
 						}
-						console.log(selectedCountry)
-						console.log()
-						//  else {
-						//   // Do something else when the selected country is not Indonesia
-						//   handleMutation();
-						// }
+						
+						 else {
+						  // Do something else when the selected country is not Indonesia
+						  handleMutation();
+						}
 					  }}
 					loadingText="Please wait..."
 					isDisabled={disabled}
