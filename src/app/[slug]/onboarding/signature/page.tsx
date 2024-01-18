@@ -161,9 +161,10 @@ const Signature = () => {
 					onClick={() => {
 						if (selectedCountry === "Indonesia") {
 						  // Do something when the selected country is Indonesia
-						  console.log(selectedCountry)
+						  
 						  router.push("task"); // replace "/next-page" with the path of your next page
-						 }
+						}
+						console.log(selectedCountry)
 						//  else {
 						//   // Do something else when the selected country is not Indonesia
 						//   handleMutation();
