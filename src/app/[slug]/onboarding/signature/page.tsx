@@ -160,12 +160,13 @@ const Signature = () => {
 					// onClick={handleMutation}
 					// isLoading={kycMutation.isPending}
 					onClick={() => {
-						if (selectedState === "Indonesia") {
+						const selectedCountry = localStorage.getItem('selectedCountry');
+						if (selectedCountry === "Indonesia") {
 						  // Do something when the selected country is Indonesia
-						  
-						  router.push("task"); // replace "/next-page" with the path of your next page
+							
+						  	router.push("task"); // replace "/next-page" with the path of your next page
 						}
-						console.log(selectedState)
+						console.log(selectedCountry)
 						//  else {
 						//   // Do something else when the selected country is not Indonesia
 						//   handleMutation();
