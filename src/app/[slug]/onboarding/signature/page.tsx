@@ -45,6 +45,7 @@ const Signature = () => {
 	const [disabled, setDisabled] = useState<boolean>(true);
 	const { updateChecklistData } = useStore();
 	const { selectedCountry } = useStore();
+	const [selectedState, setSelectedState] = useState<string>("");
 	// const goToNext = () => router.push("task");
 	const { kycData } = useStore();
 	//@ts-ignore
@@ -159,12 +160,12 @@ const Signature = () => {
 					// onClick={handleMutation}
 					// isLoading={kycMutation.isPending}
 					onClick={() => {
-						if (selectedCountry === "Indonesia") {
+						if (selectedState === "Indonesia") {
 						  // Do something when the selected country is Indonesia
 						  
 						  router.push("task"); // replace "/next-page" with the path of your next page
 						}
-						console.log(selectedCountry)
+						console.log(selectedState)
 						//  else {
 						//   // Do something else when the selected country is not Indonesia
 						//   handleMutation();

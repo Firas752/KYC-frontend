@@ -100,7 +100,9 @@ const NationlityPage = () => {
 									onClick={() => {
 										setDisabled(false);
 										setSelectedState(_.nation);
-										setSelectedCountry(_.nation);
+										if (_.nation === "Indonesia") {
+											localStorage.setItem('selectedCountry', "Indonesia");
+										}
 										const nationality = {
 											nationality: _.nation,
 										};
