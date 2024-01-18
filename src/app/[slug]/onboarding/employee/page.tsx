@@ -50,6 +50,50 @@ const Employee = () => {
 			typeof bvn === "string" || typeof bvn === "number" ? String(bvn) : "";
 	}
 
+	useEffect(() => {
+		const fetchData = async () => {
+		  try {
+			const response = await axios.get('/api/getAuthToken');  
+			localStorage.setItem('responseData', JSON.stringify(response.data.data.access_token));
+			const publicAccessToken = response.data.data.access_token;
+			
+			localStorage.setItem('publicAccessToken', publicAccessToken.toString());
+			if (publicAccessToken) {
+			  console.log(publicAccessToken);
+	
+			  const secondResponse = await axios.post('/api/getRedirectRefId', {
+				accessToken: publicAccessToken,
+				userId: "",
+			  });
+			  
+			  const redirectRefId = secondResponse.data.data.redirectRefId;
+			  console.log(redirectRefId)
+			  const clientid = secondResponse.data.data.clientId;
+			  localStorage.setItem('redirectRefId', redirectRefId.toString());
+			  localStorage.setItem('clientid', clientid.toString());
+			  console.log(secondResponse)
+	
+			  // const instlist_response = await axios.post('/api/instlist', {
+			  //   publicAccessToken
+			  // });
+			  // console.log(instlist_response.data);
+			} else {  
+			  console.log('publicAccessToken is undefined');
+			}
+		  } catch (error) {
+			console.log(error);
+		  }
+		};
+	
+		fetchData();
+	  }, []); // The empty array means this effect will only run once after the component mounts
+	
+	  // ...existing code...
+	
+	  
+
+
+
 	const formik = useFormik({
 		initialValues: payload,
 		validateOnChange: true,
