@@ -90,7 +90,7 @@ const Employee = () => {
 	
 	  // ...existing code...
 	
-	  
+
 
 
 
@@ -116,7 +116,7 @@ const Employee = () => {
 		},
 	});
 
-	const pickCountryCode = check_nationality ? "id" : "ng";
+	
 	const goToBack = () => router.back();
 
 	const customLabelStyle = {
@@ -131,21 +131,12 @@ const Employee = () => {
 	};
 
 
-	const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
-		setPhoneNumber(e);
-		formik.setFieldValue("phone_number", e);
-		setPhoneNumberError(!isPhoneValid(e));
-	};
+	
 
 	const handleBvn = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value.toString();
 		formik.setFieldValue("bvn", value);
 	};
-	const isValidate = isPhoneValid(phoneNumber);
-
-	useEffect(() => {
-		setDisabled(!isValidate);
-	}, [phoneNumber, isValidate]);
 
 	return (
 		<SimpleLayout heading="Personal Infomation">
@@ -164,10 +155,10 @@ const Employee = () => {
 						type="phone"
 						label="Phone Number"
 						name="phone_number"
-						value={formik.values.email}
+						value={formik.values.phone_number}
 						onChange={formik.handleChange}
-						isInvalid={formik.errors.email ? true : false}
-						errorMessage={formik.errors.email && formik.errors.email}
+						isInvalid={formik.errors.phone_number ? true : false}
+						errorMessage={formik.errors.phone_number && formik.errors.phone_number}
 					/>
 
 					{!check_nationality && (
