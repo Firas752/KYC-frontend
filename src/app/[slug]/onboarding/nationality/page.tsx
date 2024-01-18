@@ -100,6 +100,7 @@ const NationlityPage = () => {
 									onClick={() => {
 										setDisabled(false);
 										setSelectedState(_.nation);
+										setSelectedCountry(_.nation);
 										const nationality = {
 											nationality: _.nation,
 										};

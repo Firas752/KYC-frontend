@@ -44,6 +44,7 @@ const Signature = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [disabled, setDisabled] = useState<boolean>(true);
 	const { updateChecklistData } = useStore();
+	const { selectedCountry } = useStore();
 	// const goToNext = () => router.push("task");
 	const { kycData } = useStore();
 	//@ts-ignore
@@ -155,8 +156,17 @@ const Signature = () => {
 				</MobileButton>
 				<MobileButton
 					w="100%"
-					onClick={handleMutation}
-					isLoading={kycMutation.isPending}
+					// onClick={handleMutation}
+					// isLoading={kycMutation.isPending}
+					onClick={() => {
+						if (selectedCountry === "Indonesia") {
+						  // Do something when the selected country is Indonesia
+						  router.push("task"); // replace "/next-page" with the path of your next page
+						} else {
+						  // Do something else when the selected country is not Indonesia
+						  handleMutation();
+						}
+					  }}
 					loadingText="Please wait..."
 					isDisabled={disabled}
 				>

@@ -7,6 +7,7 @@ type Store = {
 	kycData: Record<string, any>;
 	checklistData: Record<string, any>;
 	apiData: Record<string , any>
+	selectedCountry: string | null;
 };
 
 type Actions = {
@@ -14,6 +15,7 @@ type Actions = {
 	updateKycData: (data: any) => void;
 	updateChecklistData: (data: any) => void;
 	updateApiData: (data: any) => void
+	setSelectedCountry: (country: string) => void;
 };
 
 export const useStore = create<Store & Actions>()(
@@ -25,6 +27,7 @@ export const useStore = create<Store & Actions>()(
 				authData: {},
 				kycData: {},
 				checklistData: {},
+				selectedCountry: null,
 				
 				updateApiData: (data: any) => {
 					set(() => ({
@@ -49,6 +52,11 @@ export const useStore = create<Store & Actions>()(
 						},
 					}));
 				},
+				setSelectedCountry: (country: string) => { // And this function
+					set(() => ({
+					  selectedCountry: country,
+					}));
+				  },
 			}),
 			{
 				name: "zustand_store",
