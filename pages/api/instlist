@@ -1,0 +1,22 @@
+// pages/api/getIncomeEmployment.ts
+
+import axios from 'axios';
+import { NextApiRequest, NextApiResponse } from 'next';
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const { publicAccessToken } = req.body;
+
+  try {
+    const response = await axios.get('https://api.onebrick.io/v1/institution/list', {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${publicAccessToken}`
+      }
+    });
+
+    res.status(200).json(response.data);
+  } catch (error:any) {
+    console.log(error);
+    res.json({ error: 'An error occurred while processing your request.', message: error.message});
+  }
+};
