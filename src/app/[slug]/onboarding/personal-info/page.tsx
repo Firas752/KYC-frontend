@@ -189,7 +189,7 @@ const PersonalInfo = () => {
 						/>
 					)}
 
-					<Box position={"relative"}>
+					{/* <Box position={"relative"}>
 						<LabeledInput
 							type="text"
 							label="Address"
@@ -199,7 +199,7 @@ const PersonalInfo = () => {
 							isInvalid={formik.errors.address ? true : false}
 							errorMessage={formik.errors.address && formik.errors.address}
 						/>
-					</Box>
+					</Box> */}
 
 					<Flex w="100%" gap="1em" mt="1em" position={"absolute"} bottom="-7em">
 						<MobileButton w="100%" bg="none" color="black" onClick={goToBack}>

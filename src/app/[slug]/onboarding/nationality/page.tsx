@@ -39,12 +39,8 @@ const searchIcon = (
 const NationlityPage = () => {
 	const router = useRouter();
 	const goToNext = () => {
-		if (selectedState === "Indonesia") {
-			localStorage.setItem('selectedCountry', "Indonesia");
-			router.push("signature"); // replace "/indonesia-route" with the actual route for Indonesia
-		} else {
+		
 		  router.push("personal-info");
-		}
 	  };
 	const [isFiltered, setFilteredData] = useState(currentCountry);
 	const [isDisabled, setDisabled] = useState<boolean>(true);

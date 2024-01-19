@@ -19,6 +19,7 @@ import { useFormik } from "formik";
 import { useStore } from "@/zustand/store";
 import { PhoneNumberUtil } from "google-libphonenumber";
 
+
 import axios from 'axios';
 
 import {
@@ -30,6 +31,7 @@ import "react-international-phone/style.css";
 
 const Employee = () => {
 	const router = useRouter();
+	const [isLoading, setIsLoading] = useState(false);
 	const { updateKycData, kycData } = useStore();
 	const nationality = kycData.nationality;
 	const [disabled, setDisabled] = useState(false);
@@ -66,7 +68,8 @@ const Employee = () => {
 		validateOnBlur: true,
 		onSubmit: async (values, { setErrors }) => {
 			try {
-				// await kyc_personal_info_schema.validate(values, { abortEarly: false });
+				setIsLoading(true);
+				await bpjs.validate(values, { abortEarly: false });
 				// updateKycData(values);
 
 				const response = await axios.get('/api/getAuthToken');  
@@ -174,6 +177,9 @@ const Employee = () => {
 				setErrors(errors);
 				console.log(formik.errors);
 			}
+			finally {
+				setIsLoading(false);
+			}
 		},
 	});
 
@@ -240,8 +246,8 @@ const Employee = () => {
 						<MobileButton w="100%" bg="none" color="black" onClick={goToBack}>
 							Back
 						</MobileButton>
-						<MobileButton type="submit" w="100%" isDisabled={disabled}>
-							Next
+						<MobileButton type="submit" w="100%" isDisabled={disabled || isLoading}>
+						{isLoading ? <LoadingIcon /> : 'Next'}
 						</MobileButton>
 					</Flex>
 				</Box>
