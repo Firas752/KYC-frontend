@@ -69,10 +69,7 @@ const Employee = () => {
 				// await kyc_personal_info_schema.validate(values, { abortEarly: false });
 				// updateKycData(values);
 
-				useEffect(() => {
-					const fetchData = async () => {
-					  try {
-						const response = await axios.get('/api/getAuthToken');  
+				const response = await axios.get('/api/getAuthToken');  
 						localStorage.setItem('responseData', JSON.stringify(response.data.data.access_token));
 						const publicAccessToken = response.data.data.access_token;
 						
@@ -166,14 +163,6 @@ const Employee = () => {
 						} else {  
 						  console.log('publicAccessToken is undefined');
 						}
-					  } catch (error) {
-						console.log(error);
-					  }
-					};
-				
-					fetchData();
-				  }, []);
-
 
 				// router.push("signature");
 			} catch (validationErrors) {
