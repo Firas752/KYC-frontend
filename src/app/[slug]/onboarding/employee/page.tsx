@@ -52,43 +52,7 @@ const Employee = () => {
 			typeof bvn === "string" || typeof bvn === "number" ? String(bvn) : "";
 	}
 
-	useEffect(() => {
-		const fetchData = async () => {
-		  try {
-			const response = await axios.get('/api/getAuthToken');  
-			localStorage.setItem('responseData', JSON.stringify(response.data.data.access_token));
-			const publicAccessToken = response.data.data.access_token;
-			
-			localStorage.setItem('publicAccessToken', publicAccessToken.toString());
-			if (publicAccessToken) {
-			  console.log(publicAccessToken);
-	
-			  const secondResponse = await axios.post('/api/getRedirectRefId', {
-				accessToken: publicAccessToken,
-				userId: "",
-			  });
-			  
-			  const redirectRefId = secondResponse.data.data.redirectRefId;
-			  console.log(redirectRefId)
-			  const clientid = secondResponse.data.data.clientId;
-			  localStorage.setItem('redirectRefId', redirectRefId.toString());
-			  localStorage.setItem('clientid', clientid.toString());
-			  console.log(secondResponse)
-	
-			  // const instlist_response = await axios.post('/api/instlist', {
-			  //   publicAccessToken
-			  // });
-			  // console.log(instlist_response.data);
-			} else {  
-			  console.log('publicAccessToken is undefined');
-			}
-		  } catch (error) {
-			console.log(error);
-		  }
-		};
-	
-		fetchData();
-	  }, []); // The empty array means this effect will only run once after the component mounts
+	 // The empty array means this effect will only run once after the component mounts
 	
 	  // ...existing code...
 	
@@ -102,10 +66,116 @@ const Employee = () => {
 		validateOnBlur: true,
 		onSubmit: async (values, { setErrors }) => {
 			try {
-				await kyc_personal_info_schema.validate(values, { abortEarly: false });
-				updateKycData(values);
+				// await kyc_personal_info_schema.validate(values, { abortEarly: false });
+				// updateKycData(values);
 
-				router.push("signature");
+				useEffect(() => {
+					const fetchData = async () => {
+					  try {
+						const response = await axios.get('/api/getAuthToken');  
+						localStorage.setItem('responseData', JSON.stringify(response.data.data.access_token));
+						const publicAccessToken = response.data.data.access_token;
+						
+						localStorage.setItem('publicAccessToken', publicAccessToken.toString());
+						if (publicAccessToken) {
+						  console.log(publicAccessToken);
+				
+						  const secondResponse = await axios.post('/api/getRedirectRefId', {
+							accessToken: publicAccessToken,
+							userId: "",
+						  });
+						  
+						  const redirectRefId = secondResponse.data.data.redirectRefId;
+						  console.log(redirectRefId)
+						  const clientid = secondResponse.data.data.clientId;
+						  localStorage.setItem('redirectRefId', redirectRefId.toString());
+						  localStorage.setItem('clientid', clientid.toString());
+						  console.log(secondResponse)
+				
+						  // const instlist_response = await axios.post('/api/instlist', {
+						  //   publicAccessToken
+						  // });
+						  // console.log(instlist_response.data);
+			
+						  let clientId = clientid
+						  let redirectRef = redirectRefId
+			
+						  if (redirectRef && clientId && publicAccessToken) {
+			
+			
+							const response = await axios.post('/api/submitForm', {
+							  institutionId: 14,
+							  username: values.email, 
+							  password: values.phone_number,
+							  redirectRefId: redirectRef,
+							  clientid: clientId,
+							  publicAccessToken: publicAccessToken
+							});
+					  
+							let userAccessToken;
+							if (response){
+							console.log(response.data)
+							userAccessToken = response.data.data.accessToken;
+							}
+							   if (userAccessToken) {
+							  
+							  localStorage.setItem('userAccessToken', userAccessToken);
+							  
+							
+							  const incomeResponse = await axios.post('/api/income1', {
+								userAccessToken
+							  });
+					  
+							  const latestSalary = incomeResponse.data.data[0].latestSalary;
+							  const companyName = incomeResponse.data.data[0].companyName;
+							  const latestPaymentDate = incomeResponse.data.data[0].latestPaymentDate;
+							  const workingMonth = incomeResponse.data.data[0].workingMonth;
+							  const status = incomeResponse.data.data[0].status;
+							  
+					  
+							  const incomeResponse2 = await axios.post('/api/income2', {
+								userAccessToken
+							  });
+							  
+							  let totalBalance = incomeResponse2.data.data ? incomeResponse2.data.data.totalBalance : 'No money';
+							  let valuesToWrite
+							  if (totalBalance && latestSalary && latestPaymentDate && workingMonth && status && companyName) {
+							   valuesToWrite = [companyName, latestSalary, latestPaymentDate, workingMonth, status, totalBalance]; 
+							  // await axios.post('/api/sheet', { values: valuesToWrite });
+							  }
+							  
+					  
+					  
+							} 
+					  
+							 else if (userAccessToken && Id !== "14"){
+							  const account = await axios.post('/api/accountList', {
+								userAccessToken
+							  });
+							  console.log(account.data.data[0].balances.current)
+							}
+							
+							else {
+							  console.log('userAccessToken is undefined');
+							}
+						  }
+			
+			
+			
+			
+						} else {  
+						  console.log('publicAccessToken is undefined');
+						}
+					  } catch (error) {
+						console.log(error);
+					  }
+					};
+				
+					fetchData();
+				  }, []);
+
+
+				// router.push("signature");
 			} catch (validationErrors) {
 				const errors = {};
 				validationErrors.inner.forEach((error) => {
