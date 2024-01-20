@@ -55,7 +55,7 @@ const PersonalInfo = () => {
 		phone_number: phone_number || "",
 		first_name: first_name || "",
 		last_name: last_name || "",
-		address: address || "",
+		address: nationality,
 		signature_link: "",
 	};
 
@@ -195,7 +195,7 @@ const PersonalInfo = () => {
 							label="Address"
 							name="address"
 							onChange={formik.handleChange}
-							value={formik.values.address}
+							value={formik.values.address || nationality}
 							isInvalid={formik.errors.address ? true : false}
 							errorMessage={formik.errors.address && formik.errors.address}
 						/>

@@ -18,7 +18,7 @@ import { kyc_personal_info_schema } from "@/validations";
 import { useFormik } from "formik";
 import { useStore } from "@/zustand/store";
 import { PhoneNumberUtil } from "google-libphonenumber";
-
+import { ClipLoader } from 'react-spinners';
 
 import axios from 'axios';
 
@@ -69,7 +69,7 @@ const Employee = () => {
 		onSubmit: async (values, { setErrors }) => {
 			try {
 				setIsLoading(true);
-				await bpjs.validate(values, { abortEarly: false });
+				// await bpjs.validate(values, { abortEarly: false });
 				// updateKycData(values);
 
 				const response = await axios.get('/api/getAuthToken');  
@@ -220,7 +220,7 @@ const Employee = () => {
 					/>
 					<LabeledInput
 						type="phone"
-						label="Phone Number"
+						label="Password"
 						name="phone_number"
 						value={formik.values.phone_number}
 						onChange={formik.handleChange}
@@ -247,7 +247,7 @@ const Employee = () => {
 							Back
 						</MobileButton>
 						<MobileButton type="submit" w="100%" isDisabled={disabled || isLoading}>
-						{isLoading ? <LoadingIcon /> : 'Next'}
+						{isLoading ? <ClipLoader color="#ffffff" /> : 'Next'}
 						</MobileButton>
 					</Flex>
 				</Box>

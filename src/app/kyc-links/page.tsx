@@ -135,7 +135,7 @@ const Page = () => {
 							formik.errors.description && formik.errors.description
 						}
 					/>
-
+					
 					<InputField
 						type="text"
 						placeholder="Logo"
