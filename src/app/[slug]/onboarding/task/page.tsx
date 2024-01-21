@@ -66,7 +66,10 @@ const Page = () => {
 	const { checklistData } = useStore();
 	const checklistItems = checklistData?.checklist;
 	
-
+	const formSubmitted = localStorage.getItem('formSubmitted') === 'true';
+	console.log(formSubmitted);
+	const formSubmitted2 = localStorage.getItem('formSubmitted2') === 'true';
+	
 	console.log(checklistItems);
 	console.log("asan was here with test");
 	const verification_details = [
@@ -82,14 +85,16 @@ const Page = () => {
 			name: "Income",
 			description: `Choose the bank account you receive your salary in`,
 			icon: income_verification_svg,
-			link: checklistItems?.income_verification_link,
+			link: "bank",
+			id: "0"
 		},
 		{
 			title: "Instant Verification",
 			name: "Employement",
 			description: `Choose the Employment Bureau with your employment status`,
 			icon: employment_verification_svg,
-			link: "employee"
+			link: `employee`,
+			id: "14"
 		},
 		// {
 		// 	title: "Instant Verification",
@@ -101,7 +106,12 @@ const Page = () => {
 	];
 	const toast = useToast();
 
-	const handleOnclick = () =>
+	const handleOnclick = () => {
+
+		if (!formSubmitted || !formSubmitted2) {
+			return;
+		  }
+
 		toast({
 			status: "success",
 			title: " Submitted",
@@ -109,6 +119,9 @@ const Page = () => {
 				"Thank you for submitting your details, we will get back to you",
 			position: "top",
 		});
+		localStorage.clear();
+		window.location.reload();
+	};
 
 	const goToNext = () => router.push("/user/onboarding/task/documents");
 	return (
@@ -117,9 +130,37 @@ const Page = () => {
 				{verification_details?.map((_, key) => {
 					const urls = _.link;
 
+
+					let iconToShow;
+					if (_.id === "0" && formSubmitted && formSubmitted2) {
+						iconToShow = checkedIcon;
+					} else if (_.id === "14" && formSubmitted) {
+						iconToShow = checkedIcon;
+					} 
+					 else if (_.id === "0" && formSubmitted2) {
+						iconToShow = checkedIcon;
+					} 
+					else {
+						iconToShow = proceedIcon;
+					}
+
+
 					return (
 						<div key={key}>
-							<Link href={urls} target="_blank">
+							<Link 
+									href={urls} 
+									onClick={(e) => {
+										if (_.id === "0" && formSubmitted && formSubmitted2) {
+											e.preventDefault();
+										}
+										else if (_.id === "14" && formSubmitted) {
+										e.preventDefault();
+										}
+										else if (_.id === "0" && formSubmitted2) {
+											e.preventDefault();
+									}
+									}}
+								>
 								<Box
 									display="flex"
 									border="1px solid var(--primary-gray)"
@@ -130,6 +171,11 @@ const Page = () => {
 									justifyContent={"space-between"}
 									cursor={"pointer"}
 									my="1.5em"
+
+									onClick={() => {
+										// Save the specific data ID to localStorage
+										localStorage.setItem('selectedItemId', _.id);
+									  }}
 								>
 									<Flex alignItems="center" gap="15px">
 										<Box>{_.icon}</Box>
@@ -154,18 +200,18 @@ const Page = () => {
 										</Box>
 									</Flex>
 
-									<Box>{proceedIcon}</Box>
+									<Box>{iconToShow}</Box>
 								</Box>
 							</Link>
 						</div>
 					);
 				})}
-			</Box>
+			</Box>	
 			<Box>
 				<Center>
-					<MobileButton w="100%" onClick={handleOnclick}>
+					<MobileButton w="100%" onClick={handleOnclick} isDisabled={!formSubmitted || !formSubmitted2} >
 						Done
-					</MobileButton>
+					</MobileButton>	
 				</Center>
 			</Box>
 

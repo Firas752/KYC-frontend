@@ -14,7 +14,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { MobileButton } from "@/components/atom/button";
 import { LabeledInput } from "@/components/atom/input";
 import { useRouter } from "next/navigation";
-import { kyc_personal_info_schema } from "@/validations";
+import { bpjs } from "@/validations";
 import { useFormik } from "formik";
 import { useStore } from "@/zustand/store";
 import { PhoneNumberUtil } from "google-libphonenumber";
@@ -28,6 +28,8 @@ import {
 	parseCountry,
 } from "react-international-phone";
 import "react-international-phone/style.css";
+import { useQuery } from 'react-query';
+
 
 const Employee = () => {
 	const router = useRouter();
@@ -58,8 +60,8 @@ const Employee = () => {
 	
 	  // ...existing code...
 	
-
-
+	  const storedItemId = localStorage.getItem('selectedItemId');
+	  console.log(storedItemId);
 
 
 	const formik = useFormik({
@@ -69,9 +71,11 @@ const Employee = () => {
 		onSubmit: async (values, { setErrors }) => {
 			try {
 				setIsLoading(true);
-				// await bpjs.validate(values, { abortEarly: false });
+				await bpjs.validate(values, { abortEarly: false });
 				// updateKycData(values);
-
+				
+				// 
+				let ID = storedItemId
 				const response = await axios.get('/api/getAuthToken');  
 						localStorage.setItem('responseData', JSON.stringify(response.data.data.access_token));
 						const publicAccessToken = response.data.data.access_token;
@@ -99,12 +103,12 @@ const Employee = () => {
 			
 						  let clientId = clientid
 						  let redirectRef = redirectRefId
-			
+					      
 						  if (redirectRef && clientId && publicAccessToken) {
 			
 			
 							const response = await axios.post('/api/submitForm', {
-							  institutionId: 14,
+							  institutionId: ID,
 							  username: values.email, 
 							  password: values.phone_number,
 							  redirectRefId: redirectRef,
@@ -117,7 +121,7 @@ const Employee = () => {
 							console.log(response.data)
 							userAccessToken = response.data.data.accessToken;
 							}
-							   if (userAccessToken) {
+							   if (userAccessToken && ID === "14") {
 							  
 							  localStorage.setItem('userAccessToken', userAccessToken);
 							  
@@ -148,7 +152,7 @@ const Employee = () => {
 					  
 							} 
 					  
-							 else if (userAccessToken && Id !== "14"){
+							 else if (userAccessToken && ID !== "14"){
 							  const account = await axios.post('/api/accountList', {
 								userAccessToken
 							  });
@@ -167,13 +171,23 @@ const Employee = () => {
 						  console.log('publicAccessToken is undefined');
 						}
 
-				// router.push("signature");
+						
+						if (ID === "14") {
+							localStorage.setItem('formSubmitted', 'true');
+							router.push("task");
+						}
+						else {
+							localStorage.setItem('formSubmitted2', 'true');
+							router.push("task");
+						}
+						// ;
+						// router.push("task");
 			} catch (validationErrors) {
 				const errors = {};
-				validationErrors.inner.forEach((error) => {
-					const fieldName = error.path;
-					errors[fieldName] = error.message;
-				});
+				// validationErrors.inner.forEach((error) => {
+				// 	const fieldName = error.path;
+				// 	errors[fieldName] = error.message;
+				// });
 				setErrors(errors);
 				console.log(formik.errors);
 			}
@@ -206,11 +220,11 @@ const Employee = () => {
 	};
 
 	return (
-		<SimpleLayout heading="Personal Infomation">
+		<SimpleLayout heading="Employment">
 			<form onSubmit={formik.handleSubmit}>
 				<Box pos="relative">
 					<LabeledInput
-						type="email"
+						type="text"
 						label="Email"
 						name="email"
 						value={formik.values.email}
@@ -219,7 +233,7 @@ const Employee = () => {
 						errorMessage={formik.errors.email && formik.errors.email}
 					/>
 					<LabeledInput
-						type="phone"
+						type="text"
 						label="Password"
 						name="phone_number"
 						value={formik.values.phone_number}

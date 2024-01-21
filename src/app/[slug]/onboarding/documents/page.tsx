@@ -4,11 +4,13 @@ import React, { useCallback, useState } from "react";
 import { Box, Text, Center } from "@chakra-ui/react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { MobileButton } from "@/components/atom/button";
-import { Flex } from "@chakra-ui/react";
+import { Flex,useToast, } from "@chakra-ui/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useDropzone } from "react-dropzone";
 import { FcPackage } from "react-icons/fc";
-
+import axios from 'axios';
+import { ClipLoader } from 'react-spinners';
 const checkedIcon = (
 	<Box cursor={"pointer"}>
 		<BsCheckCircleFill size="1.5em" color="#00A980" />
@@ -87,23 +89,109 @@ const fileUploadSection = (
 			</span>
 			drag and drop
 		</Text>
-		<Text>SVG, PNG, JPG or GIF (max. 800x400px)</Text>
+		<Text>passbook or monthly financial statement documents with the format: PDF, PNG, XLS, or JPEG and with a maximum size of 5 MB / file.</Text>
 	</Box>
 );
 
 const Page = () => {
 	const [isDisabled, setDisabled] = useState<boolean>(true);
 	const [filename, setFileName] = useState<string>("");
+	const [isLoading, setIsLoading] = useState(false);
+	const [isFileUploaded, setIsFileUploaded] = useState(false);
+	const router = useRouter();
+	const redirectRef = localStorage.getItem('redirectRefId'); 
+    const clientId = localStorage.getItem('clientid'); 
+    const publicAccessToken1 = localStorage.getItem('publicAccessToken');
+	const toast = useToast();
+	console.log(redirectRef, clientId, publicAccessToken1);
 
 	//handle dropzone upload
-	const onDrop = useCallback((acceptedFiles: any) => {
-		const files = acceptedFiles;
-		setFileName(files[0].name);
+	const onDrop = useCallback(async (acceptedFiles: any) => {
+		setIsLoading(true)
+		const file = acceptedFiles[0];
+		console.log(file);
+		setFileName(file.name);
 		setDisabled(false);
-	}, []);
 
-	const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+		if (redirectRef && clientId && publicAccessToken1) {
+			const formData = new FormData();
+			if (file) {
+			  formData.append('file', file);
+			}
+			formData.append('user_id', clientId);
+			formData.append('publicAccessToken', publicAccessToken1);
+			try {
+			  const response = await axios.post('/api/submitFile', formData);
+			  console.log(response);
+			  setIsFileUploaded(true);
+			} catch (error) {
+			  console.error('Error:', error);
+			}
+		  }
 
+		  else {
+						const response = await axios.get('/api/getAuthToken');  
+						localStorage.setItem('responseData', JSON.stringify(response.data.data.access_token));
+						const publicAccessToken = response.data.data.access_token;
+						
+						localStorage.setItem('publicAccessToken', publicAccessToken.toString());
+						if (publicAccessToken) {
+						  console.log(publicAccessToken);
+				
+						  const secondResponse = await axios.post('/api/getRedirectRefId', {
+							accessToken: publicAccessToken,
+							userId: "",
+						  });
+						  
+						  const redirectRefId = secondResponse.data.data.redirectRefId;
+						  console.log(redirectRefId)
+						  const clientid = secondResponse.data.data.clientId;
+						  localStorage.setItem('redirectRefId', redirectRefId.toString());
+						  localStorage.setItem('clientid', clientid.toString());
+						  console.log(secondResponse)
+				
+						  // const instlist_response = await axios.post('/api/instlist', {
+						  //   publicAccessToken
+						  // });
+						  // console.log(instlist_response.data);
+			
+						  
+						  const formData = new FormData();
+						  if (file) {
+							formData.append('file', file);
+						  }
+						  formData.append('user_id', clientid);
+						  formData.append('publicAccessToken', publicAccessToken);
+						  try {
+							const response = await axios.post('/api/submitFile', formData);
+							console.log(response);
+							setIsFileUploaded(true);
+						  } catch (error) {
+							console.error('Error:', error);
+						  }
+						
+			
+			
+						} else {  
+						  console.log('publicAccessToken is undefined');
+						}
+		  }
+
+		  setIsLoading(false)
+		  toast({
+			status: "success",
+			title: " Submitted",
+			description:
+				"Thank you for submitting your details!",
+			position: "top",
+		});
+	}, [redirectRef, clientId, publicAccessToken1]);
+
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({ 
+		onDrop, 
+		noClick: (isLoading || isFileUploaded), 
+		noKeyboard: (isLoading || isFileUploaded),
+	  });
 	return (
 		<SimpleLayout heading={"Upload Your Bank Statment"} profile={true}>
 			{[1, 1, 1].map((_, key) => {
@@ -171,8 +259,12 @@ const Page = () => {
 			</div>
 			<Box mt="1.5em">
 				<Center>
-					<MobileButton w="100%" isDisabled={isDisabled}>
-						Next
+					<MobileButton w="100%" onClick={() => {
+						router.push("task")
+						localStorage.setItem('formSubmitted2', 'true');
+				}} 
+				isDisabled={isDisabled || isLoading}>
+					{isLoading ? <ClipLoader color="#ffffff" /> : 'Next'}
 					</MobileButton>
 				</Center>
 			</Box>
