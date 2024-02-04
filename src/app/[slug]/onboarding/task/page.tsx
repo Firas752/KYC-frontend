@@ -66,6 +66,13 @@ const Page = () => {
 	const { checklistData } = useStore();
 	const checklistItems = checklistData?.checklist;
 	
+	// Get updated values from local storage
+	const updatedValues = localStorage.getItem('formValues');
+
+	// Log updated values
+	console.log(JSON.parse(updatedValues || '{}'));
+
+
 	const formSubmitted = localStorage.getItem('formSubmitted') === 'true';
 	console.log(formSubmitted);
 	const formSubmitted2 = localStorage.getItem('formSubmitted2') === 'true';

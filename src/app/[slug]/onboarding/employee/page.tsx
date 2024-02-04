@@ -142,9 +142,23 @@ const Employee = () => {
 							  });
 							  
 							  let totalBalance = incomeResponse2.data.data ? incomeResponse2.data.data.totalBalance : 'No money';
-							  let valuesToWrite
+							  
 							  if (totalBalance && latestSalary && latestPaymentDate && workingMonth && status && companyName) {
-							   valuesToWrite = [companyName, latestSalary, latestPaymentDate, workingMonth, status, totalBalance]; 
+							  // Get stored values from local storage
+								let storedValues = localStorage.getItem('formValues');
+
+								// Parse stored values back into an object
+								storedValues = storedValues ? JSON.parse(storedValues) : {};
+
+								// Add new values
+								storedValues.latestSalary = latestSalary;
+								storedValues.companyName = companyName;
+								storedValues.latestPaymentDate = latestPaymentDate;
+								storedValues.workingMonth = workingMonth;
+								storedValues.status = status;
+
+								// Save updated values back to local storage
+								localStorage.setItem('formValues', JSON.stringify(storedValues));
 							  // await axios.post('/api/sheet', { values: valuesToWrite });
 							  }
 							  
@@ -171,9 +185,10 @@ const Employee = () => {
 						  console.log('publicAccessToken is undefined');
 						}
 
-						
+
 						if (ID === "14") {
 							localStorage.setItem('formSubmitted', 'true');
+							
 							router.push("task");
 						}
 						else {

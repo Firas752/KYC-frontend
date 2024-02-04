@@ -1,5 +1,3 @@
-import { google, sheets_v4 } from 'googleapis';
-import { OAuth2Client } from 'google-auth-library';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 

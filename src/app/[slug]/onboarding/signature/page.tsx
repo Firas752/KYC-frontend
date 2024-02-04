@@ -52,38 +52,54 @@ const Signature = () => {
 	const { slug } = useParams();
 	const url = `/packages/${slug}/kyc-submissions`;
 
-	const handleSubmission = () => {
-		return axiosInstance.post(url, kycData);
+	
+	// const handleSubmission = () => {
+	// 	return axiosInstance.post(url, kycData);
+	// };
+
+	// const kycMutation = useMutation({
+	// 	mutationKey: ["create_mutation"],
+	// 	mutationFn: handleSubmission,
+	// 	onSuccess: (response) => {
+	// 		toast({
+	// 			status: "success",
+	// 			title: "Information Submitted",
+	// 			description: "Proceed to verify ID",
+	// 			position: "top",
+	// 		});
+	// 		const userResponse = response?.data;
+	// 		updateChecklistData(userResponse);
+	// 		// onOpen();
+	// 		router.push("task");
+	// 	},
+	// 	onError: (err: AxiosError) => {
+	// 		//@ts-ignore
+	// 		const errMsg = err?.response?.data?.message;
+	// 		toast({
+	// 			status: "error",
+	// 			title: "Oppp!!!",
+	// 			description: errMsg,
+	// 			position: "top",
+	// 		});
+	// 	},
+	// });
+
+	// const handleMutation = () => kycMutation.mutate();
+	const handleMutation = () => {
+		// Get stored values from local storage
+		let storedValues: any = localStorage.getItem('formValues');
+
+		// Parse stored values back into an object
+		storedValues = storedValues ? JSON.parse(storedValues) : {};
+
+		// Add new values
+		storedValues.signature_link = url; // replace with your actual URL
+
+		// Save updated values back to local storage
+		localStorage.setItem('formValues', JSON.stringify(storedValues));
+		router.push("task");
 	};
 
-	const kycMutation = useMutation({
-		mutationKey: ["create_mutation"],
-		mutationFn: handleSubmission,
-		onSuccess: (response) => {
-			toast({
-				status: "success",
-				title: "Information Submitted",
-				description: "Proceed to verify ID",
-				position: "top",
-			});
-			const userResponse = response?.data;
-			updateChecklistData(userResponse);
-			// onOpen();
-			router.push("task");
-		},
-		onError: (err: AxiosError) => {
-			//@ts-ignore
-			const errMsg = err?.response?.data?.message;
-			toast({
-				status: "error",
-				title: "Oppp!!!",
-				description: errMsg,
-				position: "top",
-			});
-		},
-	});
-
-	const handleMutation = () => kycMutation.mutate();
 
 	const [scopes, setScopes] = useState([
 		{

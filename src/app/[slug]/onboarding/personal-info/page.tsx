@@ -48,15 +48,16 @@ const PersonalInfo = () => {
 
 	const isNigerian = nationality === "Nigeria" || nationality === "nigeria";
 
-	const { email, phone_number, last_name, first_name, address, bvn } = kycData;
+	// const { email, phone_number, last_name, first_name, address, bvn } = kycData;
+	const { email, phone_number, last_name, first_name, bvn } = kycData;
 
 	const payload = {
 		email: email || "",
 		phone_number: phone_number || "",
 		first_name: first_name || "",
 		last_name: last_name || "",
-		address: nationality,
-		signature_link: "",
+		// address: nationality,
+		// signature_link: "",
 	};
 
 	if (isNigerian) {
@@ -66,13 +67,17 @@ const PersonalInfo = () => {
 
 	const formik = useFormik({
 		initialValues: payload,
-		validateOnChange: true,
-		validateOnBlur: true,
+		// validateOnChange: true,
+		// validateOnBlur: true,
+		validateOnChange: false,
+		validateOnBlur: false,
 		onSubmit: async (values, { setErrors }) => {
 			try {
 				await kyc_personal_info_schema.validate(values, { abortEarly: false });
-				updateKycData(values);
-
+				// updateKycData(values);
+				
+				console.log(values);
+				localStorage.setItem('formValues', JSON.stringify(values));
 				router.push("signature");
 			} catch (validationErrors) {
 				const errors = {};
