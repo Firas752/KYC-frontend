@@ -165,7 +165,7 @@ const Bank = () => {
 		  ))}
 
 <Center flexDirection="column">
-      <Text mt={4} >If you don't see your institution, you can:</Text>
+<Text mt={4}>If you don&apos;t see your institution, you can:</Text>
       <Button
   mt={2}
   bg="#5046e3"  // Change the background color to purple
