@@ -47,6 +47,7 @@ const PersonalInfo = () => {
 		nationality === "Indonesia" || nationality === "indonesia";
 
 	const isNigerian = nationality === "Nigeria" || nationality === "nigeria";
+	const isIndian = nationality === "India" || nationality === "india";
 
 	// const { email, phone_number, last_name, first_name, address, bvn } = kycData;
 	const { email, phone_number, last_name, first_name, bvn } = kycData;
@@ -90,8 +91,16 @@ const PersonalInfo = () => {
 			}
 		},
 	});
-
-	const pickCountryCode = check_nationality ? "id" : "ng";
+	let pickCountryCode;
+	if (check_nationality) {
+		pickCountryCode = "id";
+	}
+	else if (isIndian) {
+		pickCountryCode = "in";
+	}
+	else {
+		pickCountryCode = "ng";
+	}
 	const goToBack = () => router.back();
 
 	const customLabelStyle = {
@@ -180,8 +189,8 @@ const PersonalInfo = () => {
 							</Box>
 						)}
 					</FormControl>
-
-					{!check_nationality && (
+							
+					{(!check_nationality && !isIndian) && (
 						<LabeledInput
 							type="number"
 							label="BVN"

@@ -97,7 +97,13 @@ const Signature = () => {
 
 		// Save updated values back to local storage
 		localStorage.setItem('formValues', JSON.stringify(storedValues));
-		router.push("task");
+		const country = localStorage.getItem('selectedCountry');
+		if (country === 'Indonesia') {
+			router.push("task");
+		}
+		else if (country === 'India') { // Corrected line
+			router.push("documents");
+		}
 	};
 
 

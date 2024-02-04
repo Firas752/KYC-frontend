@@ -124,15 +124,15 @@ export const currentCountry = [
 		countryFlag: "https://flagsapi.com/ID/flat/64.png",
 	},
 
-	// {
-	// 	ref: "IN 34567",
-	// 	riskLevel: "High Risk",
-	// 	name: "Priya Patel",
-	// 	email: "priya.patel@email.com",
-	// 	submission: "Sep 25, 2023",
-	// 	tag: "Rejected",
-	// 	nation: "India",
-	// 	id: 9,
-	// 	countryFlag: "https://flagsapi.com/IN/flat/64.png",
-	// },
+	{
+		ref: "IN 34567",
+		riskLevel: "High Risk",
+		name: "Priya Patel",
+		email: "priya.patel@email.com",
+		submission: "Sep 25, 2023",
+		tag: "Rejected",
+		nation: "India",
+		id: 9,
+		countryFlag: "https://flagsapi.com/IN/flat/64.png",
+	},
 ];

@@ -99,6 +99,8 @@ const NationlityPage = () => {
 										setSelectedState(_.nation);
 										if (_.nation === "Indonesia") {
 											localStorage.setItem('selectedCountry', "Indonesia");
+										} else if (_.nation === "India") {
+											localStorage.setItem('selectedCountry', "India");
 										}
 										const nationality = {
 											nationality: _.nation,
